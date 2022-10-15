@@ -1,0 +1,203 @@
+
+2 6 5 0 8 7 1 3
+
+a	b
+
+0	8		0
+5	7		1
+6	1		2
+2	3		3
+	 		5
+	 		6
+	 		7
+	 		8
+
+pb
+pb
+pb
+pb
+sb
+rr
+rr
+sa
+rra
+sa
+
+0 2 5 6
+1 3 7 8
+
+pa
+ra 
+pa
+ra
+ra
+pa
+pa
+
+
+== 17 operations
+
+------------------logic--------------------
+
+split stack
+
+while !stacks_sorted
+	while i < stack.count
+		rr 
+			if a.0 > a.1 && b.0 > b.1
+				ss
+			else if a.0 > a.1
+				sa
+			else if b.0 > b.1
+				sb
+		i++
+
+
+1 2 3 4 sa
+1 2 4 3 ra
+3 1 2 4 sa
+3 1 4 2 sa
+2 3 1 4
+2 3 4 1 
+1 2 3 4
+
+1 2 3 4
+1 2 4 3
+2 4 3 1
+4 3 1 2
+4 3 2 1
+
+3 0 1
+3 1 0
+
+5 4 2
+
+
+7 5 3 1
+6 4 2 0
+
+7 5 3 1 0
+6 4 2
+
+0 7 5 3 1
+6 4 2
+
+1 0 7 5 3
+6 4 2
+
+1 0 7 5 3 2
+6 4
+
+
+
+
+8 1 4 6 9 0 5 2
+
+5 2 8 1 4 6 9 0
+
+9 0 5 2 8 1 4 6
+
+9 0 5 2 8 1 4
+6
+
+4 9 0 5 2 8 1
+6
+
+4 9 0 5 2 8 1 6
+
+6 4 9 0 5 2 8 1
+
+
+------merge sort------
+// edge case: uneven amount of numbers
+
+4 2 8 7 5 0 3 1
+
+-- split into smallest sublists and sort sublists
+4 2 8 7 5 0 pb pb
+1 3
+
+4 2 8 7 0 5 ss
+3 1
+
+4 2 8 7 pb pb
+3 1 5 0
+
+--- merge two top sublists
+4 2 8 7 0 pa
+3 1 5
+
+0 4 2 8 7 ra
+3 1 5
+
+0 4 2 8 7 5 pa
+3 1
+
+5 0 4 2 8 7 ra
+3 1
+
+-- rotate next a sublist in place
+8 7 5 0 4 2 ra ra
+3 1
+
+-- merge two top sublists
+8 7 5 0 4 2 1 pa
+3
+
+2 1 8 7 5 0 4 ra ra
+3
+
+2 1 8 7 5 0 4 3 pa
+
+4 3 2 1 8 7 5 0 ra ra
+
+-- push next merged sublist onto b
+3 2 1 8 7 5 0 4 rra
+
+3 2 1 8 7 5 0 pb
+4
+
+2 1 8 7 5 0 3 rra
+4
+
+2 1 8 7 5 0 pb
+4 3
+
+1 8 7 5 0 2 rra
+4 3
+
+1 8 7 5 0 pb
+4 3 2
+
+8 7 5 0 1 rra
+4 3 2
+
+8 7 5 0 pb
+4 3 2 1
+
+-- merge two top sublists
+0 8 7 5 ra
+4 3 2 1
+
+0 8 7 5 1 pa
+4 3 2
+
+1 0 8 7 5 ra
+4 3 2
+
+1 0 8 7 5 2 pa
+4 3
+
+2 1 0 8 7 5 ra
+4 3
+
+2 1 0 8 7 5 3 pa
+4
+
+3 2 1 0 8 7 5 ra
+4
+
+3 2 1 0 8 7 5 4 pa
+
+-- rotate to correct position
+8 7 5 4 3 2 1 0 ra ra ra ra

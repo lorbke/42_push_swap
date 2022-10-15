@@ -6,7 +6,7 @@
 #    By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/05 14:29:24 by lorbke            #+#    #+#              #
-#    Updated: 2022/10/14 22:12:37 by lorbke           ###   ########.fr        #
+#    Updated: 2022/10/15 18:18:40 by lorbke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ RM = rm -f
 INCLUDES = -g -fsanitize=address,undefined
 FLAGS = #-Wall -Wextra -Werror
 
-SRC = test_functions.c main.c parse.c operations.c operations_combine.c
+SRC = test_functions.c main.c parse.c operations.c operator.c sort.c
 OBJ = ${SRC:.c=.o}
 
 all: ${NAME}

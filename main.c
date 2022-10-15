@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:45:08 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/14 22:13:00 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/15 23:23:24 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 
 // remember to reinclude flags
 
+// vector is not catching errors correctly
+
 #include "push_swap.h"
 
 void	print_error(void)
@@ -50,16 +52,12 @@ int	main(int argc, char *argv[])
 	print_stack(stacks[0]);
 	print_stack(stacks[1]);
 
-	rotate_stack_down(stacks[0], &vector, 0);
-	rotate_both_stacks_up(stacks, &vector);
-	swap_top_of_both_stacks(stacks, &vector);
-	swap_top_of_stack(stacks[0], &vector, 0);
-	swap_top_of_stack(stacks[1], &vector, 0);
+	sort(stacks, &vector);
 
+	printf("\n\n%s", ft_vector_get_output(&vector));
 	print_stack(stacks[0]);
 	print_stack(stacks[1]);
 
-	printf("\n\n%s", ft_vector_get_output(&vector));
 
 	return (0);
 }
