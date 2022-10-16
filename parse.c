@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:33:42 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/15 16:13:14 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/16 14:11:53 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	*str_arr_to_int_arr(char **str, size_t count)
 	i = 0;
 	while (i < count)
 	{
-		int_arr[i] = ft_atoi(str[i]);
+		int_arr[i] = ft_atoi(str[count - 1 - i]);
 		i++;
 	}
 	return (int_arr);
