@@ -6,11 +6,18 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:09:07 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/16 22:23:55 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/18 00:18:33 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int	split_stack_a(t_stack *current, int subedge, t_stack **stacks, t_vector *vector);
+static int	split_stack_b(t_stack *current, int subedge, t_stack **stacks, t_vector *vector);
+static int	split_stack_start(t_stack *current, int subedge, t_stack **stacks, t_vector *vector);
+static void	quicksort_a(t_stack *current, int *edges_a, int *edges_b, t_stack **stacks, t_vector *vector);
+static void	quicksort_b(t_stack *current, int *edges_a, int *edges_b, t_stack **stacks, t_vector *vector);
+static void	quicksort_start(t_stack *current, int *edges_a, int *edges_b, t_stack **stacks, t_vector *vector);
 
 static int	is_stack_sorted(t_stack *stack)
 {
@@ -38,66 +45,156 @@ static int	is_substack_sorted(t_stack *stack)
 	return (0);
 }
 
-// static void	merge_stacks(t_stack **stacks, t_vector *vector)
-// {
-// 	while (stacks[1]->count)
-// 	{
-// 		if (stacks[1]->index[stacks[1]->count - 1]
-// 			< stacks[0]->index[stacks[0]->count - 1])
-// 		{
-// 			operate(stacks, vector, 3);
-// 			operate(stacks, vector, 5);
-// 		}
-// 		else
-// 			operate(stacks, vector, 5);
-// 	}
-// 	operate(stacks, vector, 5);
-// }
+static void	merge_stacks(t_stack **stacks, t_vector *vector)
+{
+	while (stacks[1]->count)
+	{
+		if (stacks[1]->index[stacks[1]->count - 1]
+			< stacks[0]->index[stacks[0]->count - 1])
+		{
+			operate(stacks, vector, 3);
+		}
+		else
+			operate(stacks, vector, 5);
+	}
+}
 
-static int	split_substack(t_stack **stacks, t_vector *vector, int first, int last)
+static int	split_stack_b(t_stack *current, int subedge, t_stack **stacks, t_vector *vector)
 {
 	int	pivot;
+	int	temp;
 	int	i;
 
-	pivot = (stacks[0]->index[0] + stacks[0]->index[stacks[0]->count - 1]
-			+ stacks[0]->index[stacks[0]->count / 2]) / 3;
-	i = stacks[0]->count - 1;
-	while (i >= 0)
+	pivot = (current->index[current->count - 1]
+			+ current->index[current->count - (subedge / 2 + 1)]
+			+ current->index[current->count - subedge]) / 3;
+	printf("id: %c\n", current->id);
+	printf("\nsubedge: %i\n", subedge);
+	printf("current count: %i\n", current->count);
+	printf("pivot: %i\n", pivot);
+	sleep(1);
+	temp = current->count - 1;
+	i = 0;
+	while (i <= temp)
 	{
-		if (stacks[0]->index[stacks[0]->count - 1] <= pivot)
+		if (current->index[current->count - 1] >= pivot)
+			operate(stacks, vector, 3);
+		else
+			operate(stacks, vector, 6);
+		i++;
+	}
+	return (temp + 1 - current->count);
+}
+
+static void	quicksort_b(t_stack *current, int *edges_a, int *edges_b, t_stack **stacks, t_vector *vector)
+{
+	if (*edges_b > 0)
+	{
+		printf("\nedge b: %i\n", *edges_b);
+		print_stack(stacks[0]);
+		print_stack(stacks[1]);
+		*edges_a = split_stack_b(current, *edges_b, stacks, vector);
+		edges_a++;
+		edges_b--;
+		quicksort_a(current, edges_a, edges_b, stacks, vector);
+		// edges_a--;
+		quicksort_b(current, edges_a, edges_b, stacks, vector);
+	}
+}
+
+static int	split_stack_a(t_stack *current, int subedge, t_stack **stacks, t_vector *vector)
+{
+	int	pivot;
+	int	temp;
+	int	i;
+
+	pivot = (current->index[current->count - 1]
+			+ current->index[current->count - subedge / 2]
+			+ current->index[current->count - subedge]) / 3;
+	printf("id: %c\n", current->id);
+	printf("pivot: %i\n", pivot);
+	sleep(1);
+	temp = current->count - 1;
+	i = 0;
+	while (i <= temp)
+	{
+		if (current->index[current->count - 1] <= pivot)
 			operate(stacks, vector, 4);
 		else
 			operate(stacks, vector, 5);
-		i--;
-		// sleep(1);
-		// printf("\n\n");
-		// printf("pivot: %i\n", pivot);
-		// printf("first: %i\n", first);
-		// printf("last: %i\n", last);
-		// printf("i: %i\n", i);
-		// print_stack(stacks[0]);
-		// print_stack(stacks[1]);
+		i++;
 	}
-	// i = stacks[0]->count - 1;
-	return (0);
+	return (temp + 1 - current->count);
 }
 
-static void	quicksort(t_stack **stacks, t_vector *vector, int first, int last)
+static void	quicksort_a(t_stack *current, int *edges_a, int *edges_b, t_stack **stacks, t_vector *vector)
 {
-	int	edge;
-
-	if (stacks[0]->count > 0)
+	if (*edges_a > 0)
 	{
-		edge = split_substack(stacks, vector, first, last);
-		last = stacks[0]->count - 1;
-		quicksort(stacks, vector, edge, last);
+		printf("\nedge a: %i\n", *edges_a);
+		print_stack(stacks[0]);
+		print_stack(stacks[1]);
+		*edges_b = split_stack_a(current, *edges_a, stacks, vector);
+		edges_b++;
+		edges_a--;
+		quicksort_b(stacks[1], edges_a, edges_b, stacks, vector);
+		// edges_b--;
+		quicksort_a(current, edges_a, edges_b, stacks, vector);
+	}
+}
+
+static int	split_stack_start(t_stack *current, int subedge, t_stack **stacks, t_vector *vector)
+{
+	int	pivot;
+	int	temp;
+	int	i;
+
+	pivot = (current->index[current->count - 1]
+			+ current->index[(current->count / 2) / 2]
+			+ current->index[0]) / 3;
+	printf("id: %c\n", current->id);
+	printf("pivot: %i\n", pivot);
+	sleep(1);
+	temp = current->count - 1;
+	i = 0;
+	while (i <= temp)
+	{
+		if (current->index[current->count - 1] <= pivot)
+			operate(stacks, vector, 4);
+		else
+			operate(stacks, vector, 5);
+		i++;
+	}
+	return (temp + 1 - current->count);
+}
+
+static void	quicksort_start(t_stack *current, int *edges_a, int *edges_b, t_stack **stacks, t_vector *vector)
+{
+	if (current->count > 0)
+	{
+		printf("\nedge start: %i\n", *edges_a);
+		print_stack(stacks[0]);
+		print_stack(stacks[1]);
+		*edges_b = split_stack_start(current, *edges_a, stacks, vector);
+		edges_b++;
+		quicksort_start(current, edges_a, edges_b, stacks, vector);
+		edges_b--;
+		quicksort_b(stacks[1], edges_a, edges_b, stacks, vector);
 	}
 }
 
 void	sort(t_stack **stacks, t_vector *vector)
 {
+	int	*edges_a;
+	int	*edges_b;
 	print_stack(stacks[0]);
 	print_stack(stacks[1]);
-	quicksort(stacks, vector, 0, stacks[0]->count - 1);
+
+	int	count = 50000;
+	edges_a = malloc(sizeof(int) * count);
+	edges_b = malloc(sizeof(int) * count);
+	ft_bzero(edges_a, count);
+	ft_bzero(edges_b, count);
+	quicksort_start(stacks[0], &edges_a[count / 2], &edges_b[count / 2], stacks, vector);
 	// merge_stacks(stacks, vector);
 }
