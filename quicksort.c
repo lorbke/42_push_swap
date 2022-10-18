@@ -56,8 +56,8 @@ static void	quicksort_b(t_stack *current, int edge, t_stack **stacks, t_vector *
 	if (edge > 0)
 	{
 		new_edge = split_stack_b(current, edge, stacks, vector);
-		quicksort_a(stacks[0], new_edge, stacks, vector);
 		quicksort_b(current, edge - new_edge, stacks, vector);
+		quicksort_a(stacks[0], new_edge, stacks, vector);
 	}
 	// else if (edge == 2)
 	// {
