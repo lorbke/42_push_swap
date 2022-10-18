@@ -111,8 +111,6 @@ void	sort(t_stack **stacks, t_vector *vector)
 	// print_stack(stacks[0]);
 	// print_stack(stacks[1]);
 	quicksort_a(stacks[0], stacks[0]->count, stacks, vector);
-	if (is_stack_sorted(stacks[0]))
-		printf("\n\nstack is sorted!!!\n\n");
 	// printf("\n\n");
 	// print_stack(stacks[0]);
 	// print_stack(stacks[1]);

@@ -17,19 +17,34 @@ static int	split_stack_b(t_stack *current, int edge, t_stack **stacks, t_vector 
 	int	pivot;
 	int	temp;
 	int	i;
+	int	rotations;
 
 	pivot = (current->index[current->count - 1]
 			+ current->index[current->count - (edge / 2 + 1)]
 			+ current->index[current->count - edge]) / 3;
 	temp = current->count - 1;
-	i = 0;
+	i = current->count - edge;
+	rotations = 0;
 	while (i <= temp)
 	{
+		// printf("pivot: %i\n", pivot);
+		// print_stack(stacks[0]);
+		// print_stack(stacks[1]);
+		// printf("\n\n");
+		// sleep(1);
 		if (current->index[current->count - 1] >= pivot)
 			operate(stacks, vector, 3);
 		else
+		{
 			operate(stacks, vector, 6);
+			rotations++;
+		}
 		i++;
+	}
+	while (rotations)
+	{
+		operate(stacks, vector, 9);
+		rotations--;
 	}
 	return (temp + 1 - current->count);
 }
@@ -60,19 +75,34 @@ static int	split_stack_a(t_stack *current, int edge, t_stack **stacks, t_vector 
 	int	pivot;
 	int	temp;
 	int	i;
+	int rotations;
 
 	pivot = (current->index[current->count - 1]
 			+ current->index[current->count - edge / 2]
 			+ current->index[current->count - edge]) / 3;
 	temp = current->count - 1;
-	i = 0;
+	i = current->count - edge;
+	rotations = 0;
 	while (i <= temp)
 	{
+		// printf("pivot: %i\n", pivot);
+		// print_stack(stacks[0]);
+		// print_stack(stacks[1]);
+		// printf("\n\n");
+		// sleep(1);
 		if (current->index[current->count - 1] <= pivot)
 			operate(stacks, vector, 4);
 		else
+		{
 			operate(stacks, vector, 5);
+			rotations++;
+		}
 		i++;
+	}
+	while (rotations)
+	{
+		operate(stacks, vector, 8);
+		rotations--;
 	}
 	return (temp + 1 - current->count);
 }
@@ -96,4 +126,44 @@ void	quicksort_a(t_stack *current, int edge, t_stack **stacks, t_vector *vector)
 	// }
 	// else
 	// 	operate(stacks, vector, 4);
+}
+
+
+static int	split_stack_start(t_stack *current, int subedge, t_stack **stacks, t_vector *vector)
+{
+	int	pivot;
+	int	temp;
+	int	i;
+
+	pivot = (current->index[current->count - 1]
+			+ current->index[(current->count / 2) / 2]
+			+ current->index[0]) / 3;
+	temp = current->count - 1;
+	i = 0;
+	while (i <= temp)
+	{
+				printf("pivot: %i\n", pivot);
+		// print_stack(stacks[0]);
+		// print_stack(stacks[1]);
+		// printf("\n\n");
+		// sleep(1);
+		if (current->index[current->count - 1] <= pivot)
+			operate(stacks, vector, 4);
+		else
+			operate(stacks, vector, 5);
+		i++;
+	}
+	return (temp + 1 - current->count);
+}
+
+void	quicksort_start(t_stack *current, int edge, t_stack **stacks, t_vector *vector)
+{
+	int	new_edge;
+
+	if (current->count > 0)
+	{
+		new_edge = split_stack_start(current, edge, stacks, vector);
+		quicksort_start(current, edge, stacks, vector);
+		quicksort_b(stacks[1], new_edge, stacks, vector);
+	}
 }
