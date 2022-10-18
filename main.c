@@ -54,7 +54,7 @@ int	main(int argc, char *argv[])
 
 	sort(stacks, &vector);
 
-	// printf("\n\n%s", ft_vector_get_output(&vector));
+	printf("\n\n%s", ft_vector_get_output(&vector));
 	print_stack(stacks[0]);
 	print_stack(stacks[1]);
 

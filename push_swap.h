@@ -44,12 +44,10 @@ void	operate(t_stack **stacks, t_vector *vector, int operation);
 
 void	bubblesort(t_stack *current, int edge, t_stack **stacks, t_vector *vector);
 
-static int	split_stack_a(t_stack *current, int subedge, t_stack **stacks, t_vector *vector);
 static int	split_stack_b(t_stack *current, int subedge, t_stack **stacks, t_vector *vector);
-static int	split_stack_start(t_stack *current, int subedge, t_stack **stacks, t_vector *vector);
-static void	quicksort_a(t_stack *current, int edge, t_stack **stacks, t_vector *vector);
+static int	split_stack_a(t_stack *current, int subedge, t_stack **stacks, t_vector *vector);
 static void	quicksort_b(t_stack *current, int edge, t_stack **stacks, t_vector *vector);
-void	quicksort_start(t_stack *current, int edge, t_stack **stacks, t_vector *vector);
+void	quicksort_a(t_stack *current, int edge, t_stack **stacks, t_vector *vector);
 
 int	is_stack_sorted(t_stack *stack);
 int	is_substack_sorted(t_stack *stack);
