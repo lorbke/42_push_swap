@@ -456,3 +456,49 @@ fn b(5)
 
 				fn b(1)
 					base case true
+
+
+
+----------bubblesort logic-------------
+fn move_to_largest(edge, rotations)
+	if (rotations == 0)
+		start = top of stack
+	else
+		start = rotations - 1
+	if (edge == 0)
+		end = end of stack
+	else
+		end = top of stack + 1 - edge
+	while ()
+
+
+while ()
+
+fn bubblesort(edge)
+	while (pushes < edge)
+		rotations = move_to_largest(edge - pushes - rotations, rotations)
+		push to other stack
+		pushes++
+
+
+1. implement merge solution at all edges > 7
+2. implement stack copy function
+3. make merge solution work on copy of stacks instead actual stack, return copy stacks
+4. bruteforce until merge copy solution is achieved by testing with another copy of stacks
+5. do bruteforce operations on actual stack
+
+----------bruteforce logic-------------
+find_path(level, temp_vector, temp_stacks)
+	while (i < 11)
+		operate(temp_stacks, temp_vector, i)
+		if ()
+Funktion FindeLösung (Stufe, Vektor)
+  1. wiederhole, solange es noch neue Teil-Lösungsschritte gibt:
+     a) wähle einen neuen Teil-Lösungsschritt;
+     b) falls Wahl gültig ist:
+               I) erweitere Vektor um Wahl;
+              II) falls Vektor vollständig ist, return true; // Lösung gefunden!
+                  sonst:
+                       falls (FindeLösung(Stufe+1, Vektor)) return true; // Lösung!
+                       sonst mache Wahl rückgängig; // Sackgasse (Backtracking)!
+  2. Da es keinen neuen Teil-Lösungsschritt gibt: return false // Keine Lösung!

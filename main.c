@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:45:08 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/15 23:23:24 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/18 22:31:36 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int argc, char *argv[])
 
 	sort(stacks, &vector);
 
-	printf("\n\n%s", ft_vector_get_output(&vector));
+	// printf("\n\n%s", ft_vector_get_output(&vector));
 	print_stack(stacks[0]);
 	print_stack(stacks[1]);
 

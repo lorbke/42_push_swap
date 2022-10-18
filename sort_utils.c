@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:09:07 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/18 19:31:13 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/18 23:02:57 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,67 @@ int	is_substack_sorted(t_stack *stack)
 	return (0);
 }
 
-void	merge_stacks(t_stack **stacks, t_vector *vector)
+static int	get_largest(t_stack *stack, int edge)
 {
-	while (stacks[1]->count)
+	int	highest_value;
+	int	i;
+
+	highest_value = 0;
+	i = stack->count - 1;
+	while (i >= 0)
 	{
-		if (stacks[1]->index[stacks[1]->count - 1]
-			< stacks[0]->index[stacks[0]->count - 1])
-		{
-			operate(stacks, vector, 3);
-		}
-		else
-			operate(stacks, vector, 5);
+		if (highest_value < stack->index[i])
+			highest_value = stack->index[i];
+		i--;
+	}
+	return (highest_value);
+}
+
+int	move_to_largest(t_stack *current, int edge, t_stack **stacks, t_vector *vector)
+{
+	int	largest;
+	int	rotations;
+
+	largest = get_largest(stacks[1], edge);
+	rotations = 0;
+	while (current->index[current->count - 1] != largest)
+	{
+		operate(stacks, vector, 6);
+		rotations++;
+	}
+	return (rotations);
+}
+
+
+// void	merge_stacks(int edge, t_stack **stacks, t_vector *vector)
+// {
+// 	while (stacks[1]->count)
+// 	{
+// 		move_to_largest(stacks[1], stacks[1]->count, stacks, vector);
+// 		if (stacks[1]->index[stacks[1]->count - 1]
+// 			== stacks[0]->index[stacks[0]->count - 1] - 1)
+// 		{
+// 			operate(stacks, vector, 3);
+// 		}
+// 		// print_stack(stacks[0]);
+// 		// print_stack(stacks[1]);
+// 		// printf("\n\n");
+// 		// sleep(1);
+// 	}
+// }
+
+void	get_solution_state(int edge, t_stack **stacks, t_vector *vector)
+{
+	while (edge)
+	{
+		stacks[0]->count++;
+		stacks[0]->index[stacks[0]->count - 1] = stacks[0]->index[stacks[0]->count - 2] - 1;
+		stacks[1]->count--;
+		edge--;
+		// print_stack(stacks[0]);
+		// print_stack(stacks[1]);
+		// printf("\n\n");
+		// sleep(1);
 	}
 }
 
@@ -58,10 +108,12 @@ void	sort(t_stack **stacks, t_vector *vector)
 	// {
 	// 	operate(stacks, vector, 4);
 	// }
+	// print_stack(stacks[0]);
+	// print_stack(stacks[1]);
+	quicksort_start(stacks[0], 0, stacks, vector);
+	printf("\n\n");
 	print_stack(stacks[0]);
 	print_stack(stacks[1]);
-	// move_to_highest(stacks[1], stacks, vector, 40);
-	// bubblesort(stacks[1], 40, stacks, vector);
-	quicksort_start(stacks[0], 0, stacks, vector);
-	// merge_stacks(stacks, vector);
+	printf("\n\n");
+	get_solution_state(4, stacks, vector);
 }

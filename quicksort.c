@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:26:51 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/18 19:27:09 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/18 22:13:57 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void	quicksort_b(t_stack *current, int edge, t_stack **stacks, t_vector *
 	{
 		if (is_substack_sorted(current))
 			operate(stacks, vector, 1);
-		operate(stacks, vector, 3);
-		operate(stacks, vector, 3);
+		// operate(stacks, vector, 3);
+		// operate(stacks, vector, 3);
 	}
 	else
 		operate(stacks, vector, 3);
@@ -91,7 +91,11 @@ static void	quicksort_a(t_stack *current, int edge, t_stack **stacks, t_vector *
 	{
 		if (!is_substack_sorted(current))
 			operate(stacks, vector, 0);
+		// operate(stacks, vector, 4);
+		// operate(stacks, vector, 4);
 	}
+	// else
+	// 	operate(stacks, vector, 4);
 }
 
 static int	split_stack_start(t_stack *current, int subedge, t_stack **stacks, t_vector *vector)
