@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:44:23 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/15 14:18:44 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/18 19:30:57 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ void	rotate_stack_down(t_stack *stack);
 
 void	operate(t_stack **stacks, t_vector *vector, int operation);
 
+int	is_stack_sorted(t_stack *stack);
+int	is_substack_sorted(t_stack *stack);
+void	merge_stacks(t_stack **stacks, t_vector *vector);
 void	sort(t_stack **stacks, t_vector *vector);
+
+static int	split_stack_a(t_stack *current, int subedge, t_stack **stacks, t_vector *vector);
+static int	split_stack_b(t_stack *current, int subedge, t_stack **stacks, t_vector *vector);
+static int	split_stack_start(t_stack *current, int subedge, t_stack **stacks, t_vector *vector);
+static void	quicksort_a(t_stack *current, int edge, t_stack **stacks, t_vector *vector);
+static void	quicksort_b(t_stack *current, int edge, t_stack **stacks, t_vector *vector);
+void	quicksort_start(t_stack *current, int edge, t_stack **stacks, t_vector *vector);
 
 #endif
