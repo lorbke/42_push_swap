@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:44:23 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/18 22:55:41 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/19 21:29:25 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,33 +28,39 @@ typedef struct s_stack
 	size_t			count;
 }	t_stack;
 
-// test functions
+// test_functions
 void	print_stack(t_stack *stack);
 
+// error
 void	print_error(void);
 
-t_stack	**init_stacks(t_stack **stacks, char **input, size_t count);
+// parse
+int	*get_int_arr_index(int *int_arr, size_t count);
+int	*str_arr_to_int_arr(char **str, size_t count);
 
+// stack_utils
+t_stack	**init_stacks(t_stack **stacks, char **input, size_t count);
+t_stack	**copy_stacks(t_stack **stacks_copy, t_stack **stacks);
+
+// operations
 void	swap_top_of_stack(t_stack *stack);
 void	push_to_stack(t_stack *from, t_stack *to);
 void	rotate_stack_up(t_stack *stack);
 void	rotate_stack_down(t_stack *stack);
 
+// operator
 void	operate(t_stack **stacks, t_vector *vector, int operation);
 
-void	bubblesort(t_stack *current, int edge, t_stack **stacks, t_vector *vector);
+// quicksort
+void	quicksort_a(t_stack *current, int edge, int swap, t_stack **stacks, t_vector *vector);
 
-static int	split_stack_a(t_stack *current, int subedge, t_stack **stacks, t_vector *vector);
-static int	split_stack_b(t_stack *current, int subedge, t_stack **stacks, t_vector *vector);
-static int	split_stack_start(t_stack *current, int subedge, t_stack **stacks, t_vector *vector);
-void	quicksort_a(t_stack *current, int edge, t_stack **stacks, t_vector *vector);
-static void	quicksort_b(t_stack *current, int edge, t_stack **stacks, t_vector *vector);
-void	quicksort_start(t_stack *current, int edge, t_stack **stacks, t_vector *vector);
+// solution_state
+void	get_solution_state_b(int edge, t_stack **stacks);
+void	get_solution_state_a(int edge, t_stack **stacks);
 
-int	is_stack_sorted(t_stack *stack);
-int	is_substack_sorted(t_stack *stack);
-int	move_to_largest(t_stack *current, int edge, t_stack **stacks, t_vector *vector);
-// void	merge_stacks(t_stack **stacks, t_vector *vector);
+// sort_utils
+int		is_stack_sorted(t_stack *stack);
+int		is_substack_sorted(t_stack *stack);
 void	sort(t_stack **stacks, t_vector *vector);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:09:07 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/18 23:02:57 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/19 23:28:41 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,6 @@ static int	get_largest(t_stack *stack, int edge)
 	return (highest_value);
 }
 
-int	move_to_largest(t_stack *current, int edge, t_stack **stacks, t_vector *vector)
-{
-	int	largest;
-	int	rotations;
-
-	largest = get_largest(stacks[1], edge);
-	rotations = 0;
-	while (current->index[current->count - 1] != largest)
-	{
-		operate(stacks, vector, 6);
-		rotations++;
-	}
-	return (rotations);
-}
-
-
 // void	merge_stacks(int edge, t_stack **stacks, t_vector *vector)
 // {
 // 	while (stacks[1]->count)
@@ -87,21 +71,6 @@ int	move_to_largest(t_stack *current, int edge, t_stack **stacks, t_vector *vect
 // 	}
 // }
 
-void	get_solution_state(int edge, t_stack **stacks, t_vector *vector)
-{
-	while (edge)
-	{
-		stacks[0]->count++;
-		stacks[0]->index[stacks[0]->count - 1] = stacks[0]->index[stacks[0]->count - 2] - 1;
-		stacks[1]->count--;
-		edge--;
-		// print_stack(stacks[0]);
-		// print_stack(stacks[1]);
-		// printf("\n\n");
-		// sleep(1);
-	}
-}
-
 void	sort(t_stack **stacks, t_vector *vector)
 {
 	// while (stacks[0]->count)
@@ -110,10 +79,13 @@ void	sort(t_stack **stacks, t_vector *vector)
 	// }
 	// print_stack(stacks[0]);
 	// print_stack(stacks[1]);
-	quicksort_a(stacks[0], stacks[0]->count, stacks, vector);
+	quicksort_a(stacks[0], stacks[0]->count, 1, stacks, vector);
 	// printf("\n\n");
-	// print_stack(stacks[0]);
-	// print_stack(stacks[1]);
 	// printf("\n\n");
-	// get_solution_state(4, stacks, vector);
+	// t_stack	**stacks_copy;
+	// stacks_copy = copy_stacks(stacks_copy, stacks);
+	// get_solution_state_a(7, stacks_copy);
+	// get_solution_state_b(0, stacks_copy);
+	// print_stack(stacks_copy[0]);
+	// print_stack(stacks_copy[1]);
 }

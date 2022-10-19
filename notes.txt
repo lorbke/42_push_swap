@@ -481,17 +481,31 @@ fn bubblesort(edge)
 		pushes++
 
 
-1. implement merge solution at all edges > 7
-2. implement stack copy function
-3. make merge solution work on copy of stacks instead actual stack, return copy stacks
+//1. implement merge solution at all edges < 8
+//2. implement stack copy function
+//3. make merge solution work on copy of stacks instead actual stack, return copy stacks
 4. bruteforce until merge copy solution is achieved by testing with another copy of stacks
 5. do bruteforce operations on actual stack
 
 ----------bruteforce logic-------------
-find_path(level, temp_vector, temp_stacks)
-	while (i < 11)
-		operate(temp_stacks, temp_vector, i)
-		if ()
+- there are infinite solutions
+- max amount of operations for 4 numbers = initial vector count (15?)
+- if level < vector count: vector count = level, return
+- iterate through all branches until level > vector count
+- base case: solution true, exit while loop
+
+
+
+
+
+find_path(level, stacks, vector, solution_state)
+	while (level < 12)
+		operate(stacks, vector, level)
+		if (stacks == solution_state)
+			vector
+			
+		level++
+
 Funktion FindeLösung (Stufe, Vektor)
   1. wiederhole, solange es noch neue Teil-Lösungsschritte gibt:
      a) wähle einen neuen Teil-Lösungsschritt;
@@ -502,3 +516,5 @@ Funktion FindeLösung (Stufe, Vektor)
                        falls (FindeLösung(Stufe+1, Vektor)) return true; // Lösung!
                        sonst mache Wahl rückgängig; // Sackgasse (Backtracking)!
   2. Da es keinen neuen Teil-Lösungsschritt gibt: return false // Keine Lösung!
+
+
