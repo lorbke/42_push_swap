@@ -490,31 +490,42 @@ fn bubblesort(edge)
 ----------bruteforce logic-------------
 - there are infinite solutions
 - max amount of operations for 4 numbers = initial vector count (15?)
-- if level < vector count: vector count = level, return
+- if level < vector count: vector count = level, path = vector, return
 - iterate through all branches until level > vector count
 - base case: solution true, exit while loop
+- undo last step by doing exact reverse move
 
+util functions;
+	reverse_operate
+		does exact opposite operation of parameter
+		vector->count--
+	test_operate
+		does the operation on stacks
+		vector->count++
+		adds operation to vector
+	path_operate(stacks, vector, path)
+		does the found path operations on the original stacks
+	copy_array
+	check_solution
+	int_array_init(count)
 
+level = 0
+path->count = 10
+vector->count = 0
+vector malloc area: 10
 
-
-
-find_path(level, stacks, vector, solution_state)
-	while (level < 12)
-		operate(stacks, vector, level)
-		if (stacks == solution_state)
-			vector
-			
-		level++
-
-Funktion FindeLösung (Stufe, Vektor)
-  1. wiederhole, solange es noch neue Teil-Lösungsschritte gibt:
-     a) wähle einen neuen Teil-Lösungsschritt;
-     b) falls Wahl gültig ist:
-               I) erweitere Vektor um Wahl;
-              II) falls Vektor vollständig ist, return true; // Lösung gefunden!
-                  sonst:
-                       falls (FindeLösung(Stufe+1, Vektor)) return true; // Lösung!
-                       sonst mache Wahl rückgängig; // Sackgasse (Backtracking)!
-  2. Da es keinen neuen Teil-Lösungsschritt gibt: return false // Keine Lösung!
-
+find_path(level, solution_state, path, vector, stacks)
+	while (operation < 11)
+		if (level < path->count)
+			test_operate(stacks, vector, operation)
+			if (check_solution(solution_state, stacks))
+				path->values = copy_array(path->array, vector->array, vector->count)
+				path->count = vector->count
+				return ;
+			else
+				find_path(level + 1, solution_state, path, vector, stacks)
+		else
+			return ;
+		reverse_operate(stacks, vector, operation)
+		operation++
 

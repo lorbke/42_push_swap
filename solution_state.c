@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_finder.c                                      :+:      :+:    :+:   */
+/*   solution_state.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:58:20 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/19 20:51:32 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/19 23:46:56 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	get_solution_state_b(int edge, t_stack **stacks)
 {
 	int	temp;
 
+	if (edge > stacks[1]->count)
+		edge = stacks[1]->count;
 	temp = edge;
 	while (edge)
 	{
@@ -79,6 +81,8 @@ void	get_solution_state_a(int edge, t_stack **stacks)
 {
 	int	temp;
 
+	if (edge > stacks[0]->count)
+	edge = stacks[0]->count;
 	temp = edge;
 	while (edge)
 	{

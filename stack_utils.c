@@ -6,13 +6,13 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:58:28 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/19 21:40:17 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/20 01:21:38 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	*copy_array(int *dst, int *src, size_t n)
+int	*copy_array(int *dst, int *src, size_t n)
 {
 	size_t	i;
 	size_t	len;
@@ -56,8 +56,8 @@ t_stack	**copy_stacks(t_stack **stacks_copy, t_stack **stacks)
 	stacks_copy = malloc(sizeof(t_stack *) * 2);
 	stacks_copy[0] = malloc(sizeof(t_stack));
 	stacks_copy[1] = malloc(sizeof(t_stack));
-	stacks_copy[0]->id = 'c';
-	stacks_copy[1]->id = 'd';
+	stacks_copy[0]->id = stacks[0]->id + 2;
+	stacks_copy[1]->id = stacks[1]->id + 2;
 	stacks_copy[0]->count = stacks[0]->count;
 	stacks_copy[1]->count = stacks[1]->count;
 	stacks_copy[0]->index = malloc(sizeof(int)
