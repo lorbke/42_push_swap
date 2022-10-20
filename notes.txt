@@ -529,3 +529,91 @@ find_path(level, solution_state, path, vector, stacks)
 		reverse_operate(stacks, vector, operation)
 		operation++
 
+
+
+------------edge < 6 logic--------------
+- sort_b sorts to stack a
+- sort_a sorts on same stack
+- rotates have to be used with caution
+
+sort_b
+-
+x 0 4 2 1 3
+rb rb rb rb
+
+-
+4 2 1 3 x 0
+pa
+
+0
+4 2 1 3 x
+rrb rrb rrb
+
+0
+3 x 4 2 1
+pa pa
+
+0 1 2
+3 x 4
+rrb
+
+0 1 2
+x 4 3
+pa pa
+
+0 1 2 3 4
+
+// if return negative, reverse rotate
+// if return 0 or positive, rotate
+
+get_highest(top, bottom, stack)
+	highest = 0
+	while (top)
+		if (stack->index[stack->count - top] > highest)
+			highest = stack->index[stack->count - top]
+		top--
+	while (bottom)
+		if (stack->index[0 + bottom - 1] > highest)
+			highest = stack->index[0 + bottom - 1]
+		bottom--
+	return (highest)
+
+get_direction(number, stack)
+	top = 0
+	bottom = 1
+	while (stack->index[stack->count - 1 - top] != number)
+		top++
+	while (bottom && stack->index[0 - 1 + bottom] != number)
+		bottom++
+	return (bottom - top)
+
+rotate_direction(direction, stacks, vector)
+	if (direction < 0)
+		operate(stacks, vector, rrb)
+	else
+		operate(stacks, vector, rb)
+
+insertionsort(edge, swap, stacks, vector)
+	highest
+	direction
+	if (swap == 1)
+		top = edge
+		bottom = 0
+	else
+		top = 0
+		bottom = edge
+	while (edge)
+		highest = get_highest(top, bottom, stack)
+		direction = get_direction(highest, stack)
+		i = 0
+		while (stacks[1]->index[stacks[1]->count - 1] != highest)
+			rotate_direction(direction, stacks, vector)
+		operate(stacks, vector, pa)
+		top -= direction
+		bottom += direction
+
+
+
+
+
+

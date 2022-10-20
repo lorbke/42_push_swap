@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:09:07 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/20 16:39:37 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/20 22:34:21 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,9 @@ void	sort(t_stack **stacks, t_vector *vector)
 	// operate(stacks, vector, 4);
 	// operate(stacks, vector, 4);
 	// operate(stacks, vector, 4);
+	// print_stack(stacks[0]);
+	// print_stack(stacks[1]);
+	// insertionsort(4, 1, stacks, vector);
+	// print_stack(stacks[0]);
+	// print_stack(stacks[1]);
 }
