@@ -41,27 +41,60 @@ void	path_operate(t_stack **stacks, t_intvec *vec, t_vector *vector)
 void	reverse_operate(t_stack **stacks, t_intvec *vec, int operation)
 {
 	if (operation == 0)
-		test_operate(stacks, vec, 0);
+	{
+			if (!test_operate(stacks, vec, 0))
+				return ;
+	}
 	else if (operation == 1)
-		test_operate(stacks, vec, 1);
+	{
+			if (!test_operate(stacks, vec, 1))
+				return ;
+	}
 	else if (operation == 2)
-		test_operate(stacks, vec, 2);
+	{
+			if (!test_operate(stacks, vec, 2))
+				return ;
+	}
 	else if (operation == 3)
-		test_operate(stacks, vec, 4);
+	{
+			if (!test_operate(stacks, vec, 3))
+				return ;
+	}
 	else if (operation == 4)
-		test_operate(stacks, vec, 3);
+	{
+			if (!test_operate(stacks, vec, 4))
+				return ;
+	}
 	else if (operation == 5)
-		test_operate(stacks, vec, 8);
+	{
+			if (!test_operate(stacks, vec, 5))
+				return ;
+	}
 	else if (operation == 6)
-		test_operate(stacks, vec, 9);
+	{
+			if (!test_operate(stacks, vec, 6))
+				return ;
+	}
 	else if (operation == 7)
-		test_operate(stacks, vec, 10);
+	{
+			if (!test_operate(stacks, vec, 7))
+				return ;
+	}
 	else if (operation == 8)
-		test_operate(stacks, vec, 5);
+	{
+			if (!test_operate(stacks, vec, 8))
+				return ;
+	}
 	else if (operation == 9)
-		test_operate(stacks, vec, 6);
+	{
+			if (!test_operate(stacks, vec, 9))
+				return ;
+	}
 	else if (operation == 10)
-		test_operate(stacks, vec, 7);
+	{
+			if (!test_operate(stacks, vec, 10))
+				return ;
+	}
 	else
 		return ;
 	vec->count -= 2;

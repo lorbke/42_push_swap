@@ -25,7 +25,7 @@
 	09 = rrb
 	10 = rrr
 */
-void	test_operate(t_stack **stacks, t_intvec *vec, int operation)
+int	test_operate(t_stack **stacks, t_intvec *vec, int operation)
 {
 	if (operation == 0)
 	{
@@ -33,6 +33,7 @@ void	test_operate(t_stack **stacks, t_intvec *vec, int operation)
 		{
 			swap_top_of_stack(stacks[0]);
 			intvec_push_back(vec, 0);
+			return (1);
 		}
 	}
 	else if (operation == 1)
@@ -41,6 +42,7 @@ void	test_operate(t_stack **stacks, t_intvec *vec, int operation)
 		{
 			swap_top_of_stack(stacks[1]);
 			intvec_push_back(vec, 1);
+			return (1);
 		}
 	}
 	else if (operation == 2)
@@ -50,6 +52,7 @@ void	test_operate(t_stack **stacks, t_intvec *vec, int operation)
 			swap_top_of_stack(stacks[0]);
 			swap_top_of_stack(stacks[1]);
 			intvec_push_back(vec, 2);
+			return (1);
 		}
 	}
 	else if (operation == 3)
@@ -58,6 +61,7 @@ void	test_operate(t_stack **stacks, t_intvec *vec, int operation)
 		{
 			push_to_stack(stacks[1], stacks[0]);
 			intvec_push_back(vec, 3);
+			return (1);
 		}
 	}
 	else if (operation == 4)
@@ -66,6 +70,7 @@ void	test_operate(t_stack **stacks, t_intvec *vec, int operation)
 		{
 			push_to_stack(stacks[0], stacks[1]);
 			intvec_push_back(vec, 4);
+			return (1);
 		}
 	}
 	else if (operation == 5)
@@ -74,6 +79,7 @@ void	test_operate(t_stack **stacks, t_intvec *vec, int operation)
 		{
 			rotate_stack_up(stacks[0]);
 			intvec_push_back(vec, 5);
+			return (1);
 		}
 	}
 	else if (operation == 6)
@@ -82,6 +88,7 @@ void	test_operate(t_stack **stacks, t_intvec *vec, int operation)
 		{
 			rotate_stack_up(stacks[1]);
 			intvec_push_back(vec, 6);
+			return (1);
 		}
 	}
 	else if (operation == 7)
@@ -91,6 +98,7 @@ void	test_operate(t_stack **stacks, t_intvec *vec, int operation)
 			rotate_stack_up(stacks[0]);
 			rotate_stack_up(stacks[1]);
 			intvec_push_back(vec, 7);
+			return (1);
 		}
 	}	
 	else if (operation == 8)
@@ -99,6 +107,7 @@ void	test_operate(t_stack **stacks, t_intvec *vec, int operation)
 		{
 			rotate_stack_down(stacks[0]);
 			intvec_push_back(vec, 8);
+			return (1);
 		}
 	}
 	else if (operation == 9)
@@ -107,6 +116,7 @@ void	test_operate(t_stack **stacks, t_intvec *vec, int operation)
 		{
 			rotate_stack_down(stacks[1]);
 			intvec_push_back(vec, 9);
+			return (1);
 		}
 	}
 	else if (operation == 10)
@@ -116,6 +126,8 @@ void	test_operate(t_stack **stacks, t_intvec *vec, int operation)
 			rotate_stack_down(stacks[0]);
 			rotate_stack_down(stacks[1]);
 			intvec_push_back(vec, 10);
+			return (1);
 		}
 	}
+	return (0);
 }

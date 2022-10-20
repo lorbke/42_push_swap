@@ -63,7 +63,7 @@ t_intvec	*intvec_init(t_intvec *vec, int count);
 void	intvec_push_back(t_intvec *vec, int n);
 
 // test_operator
-void	test_operate(t_stack **stacks, t_intvec *vec, int operation);
+int		test_operate(t_stack **stacks, t_intvec *vec, int operation);
 
 // bruteforce_utils
 void	path_operate(t_stack **stacks, t_intvec *vec, t_vector *vector);

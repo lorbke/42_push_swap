@@ -44,18 +44,21 @@ static void	find_path(int level, t_intvec *path, t_stack **solution_state, t_sta
 	{
 		if (level < path->count)
 		{
-			printf("%i", operation);
-			fflush(stdout);
-			test_operate(stacks, vec, operation);
-			if (check_solution(solution_state, stacks))
+			if (test_operate(stacks, vec, operation))
 			{
-				path->array = copy_array(path->array, vec->array, vec->count);
-				path->count = vec->count;
-				return ;
+			printf("%i ", vec->count);
+			fflush(stdout);
+				if (check_solution(solution_state, stacks))
+				{
+					path->array = copy_array(path->array, vec->array, vec->count);
+					path->count = vec->count;
+					vec->count--;
+					return ;
+				}
+				else
+					find_path(level + 1, path, solution_state, stacks, vec);
+				reverse_operate(stacks, vec, operation);
 			}
-			else
-				find_path(level + 1, path, solution_state, stacks, vec);
-			reverse_operate(stacks, vec, operation);
 		}
 		else
 			return ;
@@ -73,10 +76,11 @@ void	bruteforce(int id, int edge, t_stack **stacks, t_vector *vector)
 
 	solution_state = copy_stacks(solution_state, stacks);
 	stacks_copy = copy_stacks(stacks_copy, stacks);
-	vec = intvec_init(vec, 10);
+	vec = intvec_init(vec, 100);
 	path = intvec_init(path, 10);
 	vec->count = 0;
 	test_operate(solution_state, vec, 4);
+	vec->count--;
 	printf("\n\n");
 	print_stack(solution_state[1]);
 	printf("\n\n");
