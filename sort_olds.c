@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_utils.c                                       :+:      :+:    :+:   */
+/*   sort_olds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 14:16:19 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/17 21:48:15 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/20 16:56:43 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,3 +285,44 @@ static int	get_pivot(t_stack *stack, int first, int last)
 // 		// }
 // 	}
 // }
+
+// rotation adjustment
+static int	split_stack_a(t_stack *current, int edge, int swap, t_stack **stacks, t_vector *vector)
+{
+	int	pivot;
+	int	temp;
+	int	i;
+	int	rotations;
+
+	rotations = 0;
+	swap = 1;
+	if (swap == -1)
+			pivot = (current->index[0]
+				+ current->index[0 + (edge / 2 + 1)]
+				+ current->index[edge - 1]) / 3;
+	else
+		pivot = (current->index[current->count - 1]
+				+ current->index[current->count - (edge / 2 + 1)]
+				+ current->index[current->count - edge]) / 3;
+	temp = current->count - 1;
+	i = current->count - edge;
+	while (i <= temp)
+	{
+		if (swap == -1)
+			operate(stacks, vector, 8);
+		if (current->index[current->count - 1] <= pivot)
+			operate(stacks, vector, 4);
+		else if (swap == 1)
+		{
+			operate(stacks, vector, 5);
+			rotations++;
+		}
+		i++;
+	}
+	while (rotations)
+	{
+		operate(stacks, vector, 8);
+		rotations--;
+	}
+	return (temp + 1 - current->count);
+}
