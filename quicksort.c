@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:26:51 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/20 22:35:27 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/20 23:49:00 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	quicksort_b(t_stack *current, int edge, int swap, t_stack **stacks, 
 {
 	int	new_edge;
 
-	if (edge > 5)
+	if (edge > 10)
 	{
 		new_edge = split_stack_b(current, edge, swap, stacks, vector);
 		quicksort_a(stacks[0], new_edge, 1, stacks, vector);

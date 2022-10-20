@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:09:07 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/20 22:34:21 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/20 22:44:44 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,15 @@ void	sort(t_stack **stacks, t_vector *vector)
 	quicksort_a(stacks[0], stacks[0]->count, 1, stacks, vector);
 	// printf("\n\n");
 	// printf("\n\n");
-	// operate(stacks, vector, 4);
-	// operate(stacks, vector, 4);
-	// operate(stacks, vector, 4);
-	// operate(stacks, vector, 4);
-	// operate(stacks, vector, 4);
+	// int	i = 0;
+	// while (i < 20)
+	// {
+	// 	operate(stacks, vector, 4);
+	// 	i++;
+	// }
 	// print_stack(stacks[0]);
 	// print_stack(stacks[1]);
-	// insertionsort(4, 1, stacks, vector);
+	// insertionsort(20, 1, stacks, vector);
 	// print_stack(stacks[0]);
 	// print_stack(stacks[1]);
 }

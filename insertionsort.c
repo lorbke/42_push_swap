@@ -6,43 +6,41 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:21:38 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/20 22:32:00 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/20 23:27:26 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	get_highest(int top, int bottom, t_stack *stack)
+static int	get_highest(t_stack *stack)
 {
 	int	highest;
+	int	i;
 
 	highest = 0;
-	while (top)
+	i = 0;
+	while (i < stack->count)
 	{
-		if (stack->index[stack->count - top] > highest)
-			highest = stack->index[stack->count - top];
-		top--;
-	}
-	while (bottom)
-	{
-		if (stack->index[0 + bottom - 1] > highest)
-			highest = stack->index[0 + bottom - 1];
-		bottom--;
+		if (stack->index[i] > highest)
+			highest = stack->index[i];
+		i++;
 	}
 	return (highest);
 }
 
-static int	get_direction(int top, int bottom, int number, t_stack *stack)
+static int	get_direction(int number, t_stack *stack)
 {
+	int	top;
+	int	bottom;
 	int	temp;
 
-	temp = top;
-	while (top && stack->index[stack->count - 1 - temp + top] != number)
-		top--;
-	temp = bottom;
-	while (bottom && stack->index[0 + temp - bottom] != number)
-		bottom--;
-	return (top - bottom);
+	top = 0;
+	bottom = 0;
+	while (stack->index[stack->count - 1 - top] != number)
+		top++;
+	while (stack->index[0 + bottom] != number)
+		bottom++;
+	return (bottom + 1 - top);
 }
 
 static int	rotate_direction(int direction, t_stack **stacks, t_vector *vector)
@@ -61,42 +59,23 @@ static int	rotate_direction(int direction, t_stack **stacks, t_vector *vector)
 
 void	insertionsort(int edge, int swap, t_stack **stacks, t_vector *vector)
 {
-	int	top;
-	int	bottom;
 	int	highest;
 	int	direction;
 
-	if (swap == 1)
-	{
-		top = edge;
-		bottom = 0;
-	}
-	else
-	{
-		top = 0;
-		bottom = edge;
-	}
-	// highest = get_highest(top, bottom, stacks[1]);
-	// direction = get_direction(highest, stacks[1]);
-	// rotate_direction(direction, stacks, vector);
 	while (edge)
 	{
-		// printf("top: %i\n", top);
-		// printf("bottom: %i\n", bottom);
-		highest = get_highest(top, bottom, stacks[1]);
+		highest = get_highest(stacks[1]);
 		// printf("highest: %i\n", highest);
-		direction = get_direction(top, bottom, highest, stacks[1]);
+		direction = get_direction(highest, stacks[1]);
 		// printf("direction: %i\n", direction);
 		while (stacks[1]->index[stacks[1]->count - 1] != highest)
 		{
-			swap = rotate_direction(direction, stacks, vector);
-			top -= swap;
-			bottom += swap;
-			// printf("top: %i\n", top);
-			// printf("bottom: %i\n", bottom);
+			// print_stack(stacks[0]);
+			// print_stack(stacks[1]);
+			// sleep(1);
+			rotate_direction(direction, stacks, vector);
 		}
 		operate(stacks, vector, 3);
-		top--;
 		edge--;
 	}
 }
