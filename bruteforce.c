@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 22:19:32 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/20 17:55:27 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/21 01:12:49 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,19 @@ static void	find_path(t_intvec *path, t_stack **solution_state, t_stack **stacks
 {
 	int	operation;
 
-	// printf("vec->count: %zu\n", vec->count);
-	// printf("path->count: %zu\n", path->count);
-	// fflush(stdout);
-	// sleep (1);
 	operation = 0;
 	while (operation < 11)
 	{
-		// printf("operation: %i\n", operation);
+		if (operation == 1 || operation == 10 || operation == 2 || operation == 9 || operation == 6 || operation == 7)
+			continue ;
 		if (vec->count < path->count)
 		{
 			if (test_operate(stacks, vec, operation))
 			{
 				if (check_solution(solution_state, stacks))
 				{
-					// print_stack(solution_state[0]);
-					// print_stack(solution_state[1]);
-					// print_stack(stacks[0]);
-					// print_stack(stacks[1]);
 					path->array = copy_array(path->array, vec->array, vec->count);
 					path->count = vec->count;
-					// printf("solution found %zu, vector:", vec->count);
-					// int	i = 0;
-					// while (i < vec->count)
-					// {
-					// 	printf("%i ", vec->array[i]);
-					// 	i++;
-					// }
-					// printf("\n");
-					// vec->count--;
 					reverse_operate(stacks, vec, operation);
 					return ;
 				}
@@ -96,30 +80,10 @@ void	bruteforce(int id, int edge, t_stack **stacks, t_vector *vector)
 		get_solution_state_a(edge, solution_state);
 	else
 		get_solution_state_b(edge, solution_state);
-	// print_stack(solution_state[0]);
-	// print_stack(solution_state[1]);
 	stacks_copy = copy_stacks(stacks_copy, stacks);
 	vec = intvec_init(vec, 10);
 	path = intvec_init(path, 10);
-	// printf("\n\n");
-	// print_stack(stacks[0]);
-	// print_stack(stacks[1]);
 	vec->count = 0;
 	find_path(path, solution_state, stacks_copy, vec);
-	// printf("solution found %zu, path:", path->count);
-	// int	i = 0;
-	// while (i < path->count)
-	// {
-	// 	printf("%i ", path->array[i]);
-	// 	i++;
-	// }
-	// printf("\n");
-	// printf("path->count: %zu\n", path->count);
-	// printf("path: %i\n", path->array[0]);
 	path_operate(stacks, path, vector);
-	// // operate(stacks, vector, 2);
-	// print_stack(stacks[0]);
-	// print_stack(stacks[1]);
-	// printf("solution: %i\n", check_solution(solution_state, stacks));
-	// printf("\n\n");
 }

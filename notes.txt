@@ -616,4 +616,8 @@ insertionsort(edge, swap, stacks, vector)
 
 
 
+x 0 4 3 1 2
+
+
+
 

@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:44:23 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/20 21:28:26 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/10/21 00:32:38 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ void	reverse_operate(t_stack **stacks, t_intvec *vec, int operation);
 // bruteforce
 void	bruteforce(int id, int edge, t_stack **stacks, t_vector *vector);
 
+// hardsort
+void	hardsort(int edge, int swap, t_stack **stacks, t_vector *vector);
+
 // insertionsort
 void	insertionsort(int edge, int swap, t_stack **stacks, t_vector *vector);
 
@@ -83,7 +86,7 @@ void	get_solution_state_b(int edge, t_stack **stacks);
 void	get_solution_state_a(int edge, t_stack **stacks);
 
 // sort_utils
-int		is_stack_sorted(t_stack *stack);
+int		is_stack_sorted(int edge, int swap, t_stack *stack);
 int		is_substack_sorted(t_stack *stack);
 void	sort(t_stack **stacks, t_vector *vector);
 
