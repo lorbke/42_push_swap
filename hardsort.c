@@ -146,12 +146,34 @@ static void	hardsort_three(int swap, t_stack **stacks, t_vector *vector)
 	}
 }
 
+static void	hardsort_two(int swap, t_stack **stacks, t_vector *vector)
+{
+	if (swap == -1 && stacks[0]->count > 2)
+	{
+		operate(stacks, vector, 8);
+		operate(stacks, vector, 8);
+	}
+	if (!is_substack_sorted(stacks[0]))
+		operate(stacks, vector, 0);
+}
+
 void	hardsort(int edge, int swap, t_stack **stacks, t_vector *vector)
 {
 	int	i;
 
 	if (is_stack_sorted(edge, swap, stacks[0]))
+	{
+		while (edge && swap == -1)
+		{
+			operate(stacks, vector, 8);
+			edge--;
+		}	
 		return ;
+	}
+	if (edge == 2)
+		hardsort_two(swap, stacks, vector);
+	else if (edge == 1 && swap == -1)
+		operate(stacks, vector, 8);
 	// if (edge == 5)
 	// {
 	// 	operate(stacks, vector, 4);
@@ -170,7 +192,8 @@ void	hardsort(int edge, int swap, t_stack **stacks, t_vector *vector)
 	// 		edge--;
 	// 	}
 	// }
-	hardsort_three(swap, stacks, vector);
+	else if (edge == 3)
+		hardsort_three(swap, stacks, vector);
 }
 
 	// 1 2 3 x 

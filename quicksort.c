@@ -21,20 +21,18 @@ static int	get_pivot(t_stack *current, int edge, int swap)
 	i = 0;
 	if (swap == -1)
 	{
-		while (edge)
+		while (i < edge)
 		{
 			pivot += current->index[i];
 			i++;
-			edge--;
 		}
 	}
 	else
 	{
-		while (edge)
+		while (i < edge)
 		{
 			pivot += current->index[current->count - 1 - i];
 			i++;
-			edge--;
 		}
 	}
 	return (pivot /= i);
@@ -53,7 +51,7 @@ static int	split_stack_b(t_stack *current, int edge, int swap, t_stack **stacks,
 	{
 		if (swap == -1)
 			operate(stacks, vector, 9);
-		if (current->index[current->count - 1] >= pivot)
+		if (current->index[current->count - 1] > pivot)
 			operate(stacks, vector, 3);
 		else if (swap == 1)
 			operate(stacks, vector, 6);
@@ -66,7 +64,7 @@ static void	quicksort_b(t_stack *current, int edge, int swap, t_stack **stacks, 
 {
 	int	new_edge;
 
-	if (edge > 10)
+	if (edge > 15)
 	{
 		new_edge = split_stack_b(current, edge, swap, stacks, vector);
 		quicksort_a(stacks[0], new_edge, 1, stacks, vector);
@@ -97,6 +95,25 @@ static int	split_stack_a(t_stack *current, int edge, int swap, t_stack **stacks,
 		}
 		i++;
 	}
+	// if (edge - temp + 1 - current->count < 4)
+	// {
+	// 	swap *= -1;
+	// 	if (edge == 3)
+	// 		hardsort(edge, swap, stacks, vector);
+	// 	else if (edge == 2)
+	// 	{
+	// 	if (swap == -1 && stacks[0]->count > 2)
+	// 	{
+	// 		operate(stacks, vector, 8);
+	// 		operate(stacks, vector, 8);
+	// 	}
+	// 	if (!is_substack_sorted(stacks[0]))
+	// 		operate(stacks, vector, 0);
+	// 	}
+	// 	else if (edge == 1 && swap == -1)
+	// 		operate(stacks, vector, 8);
+	// 	return (0);
+	// }
 	return (temp + 1 - current->count);
 }
 
@@ -110,18 +127,6 @@ void	quicksort_a(t_stack *current, int edge, int swap, t_stack **stacks, t_vecto
 		quicksort_a(current, edge - new_edge, swap * -1, stacks, vector);
 		quicksort_b(stacks[1], new_edge, 1, stacks, vector);
 	}
-	else if (edge == 3)
+	else
 		hardsort(edge, swap, stacks, vector);
-	else if (edge == 2)
-	{
-		if (swap == -1 && stacks[0]->count > 2)
-		{
-			operate(stacks, vector, 8);
-			operate(stacks, vector, 8);
-		}
-		if (!is_substack_sorted(stacks[0]))
-			operate(stacks, vector, 0);
-	}
-	else if (edge == 1 && swap == -1)
-		operate(stacks, vector, 8);
 }

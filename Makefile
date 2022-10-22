@@ -23,9 +23,8 @@ RM = rm -f
 INCLUDES = -g -fsanitize=address,undefined
 FLAGS = #-Wall -Wextra -Werror
 
-SRC = test_functions.c main.c parse.c operations.c operator.c sort_utils.c \
-quicksort.c solution_state.c stack_utils.c intvec_utils.c bruteforce_utils.c \
-bruteforce.c test_operate.c insertionsort.c hardsort.c
+SRC = test_functions.c main.c parse.c stack_utils.c operations.c operator.c \
+sort_utils.c quicksort.c insertionsort.c hardsort.c
 
 OBJ = ${SRC:.c=.o}
 
