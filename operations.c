@@ -28,7 +28,9 @@ void	push_to_stack(t_stack *from, t_stack *to)
 {
 	to->index[to->count] = from->index[from->count - 1];
 	to->count++;
+	to->index[to->count] = -1;
 	from->count--;
+	from->index[from->count] = -1;
 }
 
 void	rotate_stack_up(t_stack *stack)

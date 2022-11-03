@@ -146,7 +146,7 @@ static void	hardsort_three(int swap, t_stack **stacks, t_vector *vector)
 	}
 }
 
-static void	hardsort_two(int swap, t_stack **stacks, t_vector *vector)
+void	hardsort_two(int swap, t_stack **stacks, t_vector *vector)
 {
 	if (swap == -1 && stacks[0]->count > 2)
 	{

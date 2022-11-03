@@ -16,7 +16,7 @@ void	print_stack(t_stack *stack)
 {
 	printf("stack_%c----> ", stack->id);
 	int	i = 0;
-	while (i < stack->count)
+	while (i <= stack->count)
 	{
 		printf("%2i ", stack->index[i]);
 		i++;

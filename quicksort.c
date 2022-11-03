@@ -64,7 +64,7 @@ static void	quicksort_b(t_stack *current, int edge, int swap, t_stack **stacks, 
 {
 	int	new_edge;
 
-	if (edge > 15)
+	if (edge > 25)
 	{
 		new_edge = split_stack_b(current, edge, swap, stacks, vector);
 		quicksort_a(stacks[0], new_edge, 1, stacks, vector);

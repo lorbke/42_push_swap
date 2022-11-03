@@ -70,14 +70,19 @@ void	sort(t_stack **stacks, t_vector *vector)
 	// printf("\n\n");
 	// printf("\n\n");
 	// int	i = 0;
-	// while (i < 20)
+	// while (i < 50)
 	// {
 	// 	operate(stacks, vector, 4);
 	// 	i++;
 	// }
+	// printf("\n");
 	// print_stack(stacks[0]);
 	// print_stack(stacks[1]);
-	// insertionsort(20, 1, stacks, vector);
+	// printf("\n");
+	// insertionsort(50, 1, stacks, vector);
+	// printf("\n");
+	// print_stack(stacks[0]);
+	// print_stack(stacks[1]);
 	// print_stack(stacks[0]);
 	// print_stack(stacks[1]);
 }

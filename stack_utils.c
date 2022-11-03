@@ -39,8 +39,9 @@ t_stack	**init_stacks(t_stack **stacks, char **input, size_t count)
 	stacks[0]->index
 		= get_int_arr_index(str_arr_to_int_arr
 			(input, stacks[0]->count), stacks[0]->count);
+	stacks[0]->index[count] = -1;
 	stacks[1]->count = 0;
-	stacks[1]->index = malloc(sizeof(int) * count);
+	stacks[1]->index = malloc(sizeof(int) * (count + 1));
 	// int	i = 0;
 	// while (i < count)
 	// {
@@ -51,22 +52,14 @@ t_stack	**init_stacks(t_stack **stacks, char **input, size_t count)
 	return (stacks);
 }
 
-t_stack	**copy_stacks(t_stack **stacks_copy, t_stack **stacks)
+t_stack	*copy_stack(t_stack *stack_copy, t_stack *stack)
 {
-	stacks_copy = malloc(sizeof(t_stack *) * 2);
-	stacks_copy[0] = malloc(sizeof(t_stack));
-	stacks_copy[1] = malloc(sizeof(t_stack));
-	stacks_copy[0]->id = stacks[0]->id + 2;
-	stacks_copy[1]->id = stacks[1]->id + 2;
-	stacks_copy[0]->count = stacks[0]->count;
-	stacks_copy[1]->count = stacks[1]->count;
-	stacks_copy[0]->index = malloc(sizeof(int)
-			* (stacks[0]->count + stacks[1]->count));
-	stacks_copy[0]->index = copy_array(stacks_copy[0]->index,
-			stacks[0]->index, stacks[0]->count);
-	stacks_copy[1]->index = malloc(sizeof(int)
-			* (stacks[1]->count + stacks[1]->count));
-	stacks_copy[1]->index = copy_array(stacks_copy[1]->index,
-			stacks[1]->index, stacks[1]->count);
-	return (stacks_copy);
+	stack_copy = malloc(sizeof(t_stack));
+	stack_copy->id = stack->id + 2;
+	stack_copy->count = stack->count;
+	stack_copy->index = malloc(sizeof(int)
+		* (stack->count));
+	stack_copy->index = copy_array(stack_copy->index,
+			stack->index, stack->count);
+	return (stack_copy);
 }

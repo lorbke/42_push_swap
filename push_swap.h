@@ -47,7 +47,7 @@ int	*str_arr_to_int_arr(char **str, size_t count);
 // stack_utils
 int	*copy_array(int *dst, int *src, size_t n);
 t_stack	**init_stacks(t_stack **stacks, char **input, size_t count);
-t_stack	**copy_stacks(t_stack **stacks_copy, t_stack **stacks);
+t_stack	*copy_stack(t_stack *stack_copy, t_stack *stack);
 
 // operations
 void	swap_top_of_stack(t_stack *stack);
@@ -73,6 +73,7 @@ void	reverse_operate(t_stack **stacks, t_intvec *vec, int operation);
 void	bruteforce(int id, int edge, t_stack **stacks, t_vector *vector);
 
 // hardsort
+void	hardsort_two(int swap, t_stack **stacks, t_vector *vector);
 void	hardsort(int edge, int swap, t_stack **stacks, t_vector *vector);
 
 // insertionsort
