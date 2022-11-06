@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:09:07 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/21 01:46:31 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/05 19:15:23 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,56 +33,26 @@ int	is_stack_sorted(int edge, int swap, t_stack *stack)
 	return (0);
 }
 
-int	is_substack_sorted(t_stack *stack)
+int	is_top_sorted(t_stack *stack)
 {
 	if (stack->index[stack->count - 1]
-			< stack->index[stack->count - 2])
+		< stack->index[stack->count - 2])
 		return (1);
 	return (0);
 }
 
-static int	get_largest(t_stack *stack, int edge)
+int	get_highest(t_stack *stack)
 {
-	int	highest_value;
+	int	highest;
 	int	i;
 
-	highest_value = 0;
-	i = stack->count - 1;
-	while (i >= 0)
+	highest = 0;
+	i = 0;
+	while (i < stack->count)
 	{
-		if (highest_value < stack->index[i])
-			highest_value = stack->index[i];
-		i--;
+		if (stack->index[i] > highest)
+			highest = stack->index[i];
+		i++;
 	}
-	return (highest_value);
-}
-
-void	sort(t_stack **stacks, t_vector *vector)
-{
-	// while (stacks[0]->count)
-	// {
-	// 	operate(stacks, vector, 4);
-	// }
-	// print_stack(stacks[0]);
-	// print_stack(stacks[1]);
-	quicksort_a(stacks[0], stacks[0]->count, 1, stacks, vector);
-	// hardsort(3, 1, stacks, vector);
-	// printf("\n\n");
-	// printf("\n\n");
-	// int	i = 0;
-	// while (i < 50)
-	// {
-	// 	operate(stacks, vector, 4);
-	// 	i++;
-	// }
-	// printf("\n");
-	// print_stack(stacks[0]);
-	// print_stack(stacks[1]);
-	// printf("\n");
-	// insertionsort(50, 1, stacks, vector);
-	// printf("\n");
-	// print_stack(stacks[0]);
-	// print_stack(stacks[1]);
-	// print_stack(stacks[0]);
-	// print_stack(stacks[1]);
+	return (highest);
 }

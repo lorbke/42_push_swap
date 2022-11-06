@@ -6,50 +6,43 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:44:23 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/21 00:32:38 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/06 01:19:03 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h>
-
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
+
 # include "libft/libft.h"
 # include "libft/ft_printf.h"
 # include "libft/ft_vector.h"
-
-typedef struct s_intvec
-{
-	int				*array;
-	size_t			count;
-}	t_intvec;
 
 typedef struct s_stack
 {
 	char			id;
 	int				*index;
-	size_t			count;
+	int				count;
 }	t_stack;
-
-// test_functions
-void	print_stack(t_stack *stack);
 
 // error
 void	print_error(void);
 
-// parse
-int	*get_int_arr_index(int *int_arr, size_t count);
-int	*str_arr_to_int_arr(char **str, size_t count);
+// parse_args
+int	parse_args(int argc, char *argv[]);
+
+// index_args
+int		*get_int_arr_index(int *int_arr, int count);
+int		*str_arr_to_int_arr(char **str, int count);
 
 // stack_utils
-int	*copy_array(int *dst, int *src, size_t n);
-t_stack	**init_stacks(t_stack **stacks, char **input, size_t count);
-t_stack	*copy_stack(t_stack *stack_copy, t_stack *stack);
+int		*copy_array(int *dst, int *src, int n);
+t_stack	**init_stacks(t_stack **stacks, char **input, int count);
 
-// operations
+// operator_utils
 void	swap_top_of_stack(t_stack *stack);
 void	push_to_stack(t_stack *from, t_stack *to);
 void	rotate_stack_up(t_stack *stack);
@@ -58,37 +51,28 @@ void	rotate_stack_down(t_stack *stack);
 // operator
 void	operate(t_stack **stacks, t_vector *vector, int operation);
 
-// intvec_utils
-t_intvec	*intvec_init(t_intvec *vec, int count);
-void	intvec_push_back(t_intvec *vec, int n);
-
-// test_operator
-int		test_operate(t_stack **stacks, t_intvec *vec, int operation);
-
-// bruteforce_utils
-void	path_operate(t_stack **stacks, t_intvec *vec, t_vector *vector);
-void	reverse_operate(t_stack **stacks, t_intvec *vec, int operation);
-
-// bruteforce
-void	bruteforce(int id, int edge, t_stack **stacks, t_vector *vector);
-
 // hardsort
 void	hardsort_two(int swap, t_stack **stacks, t_vector *vector);
 void	hardsort(int edge, int swap, t_stack **stacks, t_vector *vector);
+
+// subsequence
+int		*get_lds(t_stack *stack, int edge, int swap);
 
 // insertionsort
 void	insertionsort(int edge, int swap, t_stack **stacks, t_vector *vector);
 
 // quicksort
-void	quicksort_a(t_stack *current, int edge, int swap, t_stack **stacks, t_vector *vector);
+void	quicksort_a(int edge, int swap, t_stack **stacks, t_vector *vector);
 
-// solution_state
-void	get_solution_state_b(int edge, t_stack **stacks);
-void	get_solution_state_a(int edge, t_stack **stacks);
+// hardsort_cases
+void	case_one(t_stack **stacks, t_vector *vector);
+void	case_two(t_stack **stacks, t_vector *vector);
+void	case_three(t_stack **stacks, t_vector *vector);
+void	case_four(t_stack **stacks, t_vector *vector);
 
 // sort_utils
 int		is_stack_sorted(int edge, int swap, t_stack *stack);
-int		is_substack_sorted(t_stack *stack);
-void	sort(t_stack **stacks, t_vector *vector);
+int		is_top_sorted(t_stack *stack);
+int		get_highest(t_stack *stack);
 
 #endif

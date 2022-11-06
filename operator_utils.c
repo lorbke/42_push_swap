@@ -1,17 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   operator_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:37:20 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/15 19:37:49 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/06 00:52:30 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// printing: assign an id to stack struct and 
-// print id at end of operation function
 
 #include "push_swap.h"
 

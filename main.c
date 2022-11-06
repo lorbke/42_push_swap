@@ -6,34 +6,29 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:45:08 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/20 16:42:10 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/06 01:37:20 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// 	- parse_input -> stack_a
-// 		- string_to_int_array -> stack_a
-// 		- replace_int_with_index -> stack_a
-// 	- sort_stack -> stack_a
-// 		- create_stack_b -> stack_b
-// 		- group together operations to a set of operations, then bunch of if 
-//		  statmements to execute most sensible operation
-
-// set of operations
-// - print each time when called
-
 // handle_error
-
-
-// stack a has to be sorted and stack b has to be empty at the end
-
-
-// remember to reinclude flags
 
 // vector is not catching errors correctly
 
 // error messages output in stderror (fd = 2)
 
 // malloc protection
+
+// leaks
+
+// split into directories
+
+// make comment for every function
+
+// input parsing
+
+// multiple numbers in one string
+
+// replace atoi with strtol (CERT safe coding) (outside integer range in index args)
 
 #include "push_swap.h"
 
@@ -49,14 +44,15 @@ int	main(int argc, char *argv[])
 	t_vector	vector;
 
 	if (argc <= 1)
+		return (0);
+	if (!parse_args(argc, argv))
 		print_error();
+	stacks = NULL;
 	stacks = init_stacks(stacks, &argv[1], argc - 1);
+	if (!stacks)
+		print_error();
 	ft_vector_init(&vector);
-	// print_stack(stacks[0]);
-	// print_stack(stacks[1]);
-	sort(stacks, &vector);
+	quicksort_a(stacks[0]->count, 1, stacks, &vector);
 	write(1, ft_vector_get_output(&vector), ft_vector_get_len(&vector));
-	// print_stack(stacks[0]);
-	// print_stack(stacks[1]);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/05 14:29:24 by lorbke            #+#    #+#              #
-#    Updated: 2022/10/21 00:35:01 by lorbke           ###   ########.fr        #
+#    Updated: 2022/11/05 23:13:17 by lorbke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,11 @@ CC = cc
 AR = ar rcs
 RM = rm -f
 INCLUDES = -g -fsanitize=address,undefined
-FLAGS = #-Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
-SRC = test_functions.c main.c parse.c stack_utils.c operations.c operator.c \
-sort_utils.c quicksort.c insertionsort.c hardsort.c
+SRC = parse_args.c index_args.c stack_utils.c operator_utils.c operator.c \
+sort_utils.c quicksort.c subsequence.c insertionsort.c hardsort_cases.c \
+hardsort.c main.c
 
 OBJ = ${SRC:.c=.o}
 

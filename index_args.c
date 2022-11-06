@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   index_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 15:33:42 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/19 21:09:38 by lorbke           ###   ########.fr       */
+/*   Created: 2022/11/05 22:01:01 by lorbke            #+#    #+#             */
+/*   Updated: 2022/11/06 01:42:44 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	get_highest_int_position(int *int_arr, size_t count)
+static int	get_highest_int_position(int *int_arr, int count)
 {
 	int	highest_position;
 	int	i;
@@ -28,7 +28,7 @@ static int	get_highest_int_position(int *int_arr, size_t count)
 	return (highest_position);
 }
 
-static int	get_next_lower_position(int *int_arr, size_t count, int position)
+static int	get_next_lower_position(int *int_arr, int count, int position)
 {
 	int	i;
 	int	next_lower_position;
@@ -36,11 +36,15 @@ static int	get_next_lower_position(int *int_arr, size_t count, int position)
 	i = 0;
 	while (i < count)
 	{
+		if (i != position && int_arr[i] == int_arr[position])
+			return (-1);
 		if (int_arr[i] < int_arr[position])
 		{
 			next_lower_position = i;
 			while (i < count)
 			{
+				if (i != position && int_arr[i] == int_arr[position])
+					return (-1);
 				if (int_arr[i] > int_arr[next_lower_position]
 					&& int_arr[i] < int_arr[position])
 						next_lower_position = i;
@@ -52,9 +56,9 @@ static int	get_next_lower_position(int *int_arr, size_t count, int position)
 	return (next_lower_position);
 }
 
-int	*get_int_arr_index(int *int_arr, size_t count)
+int	*get_int_arr_index(int *int_arr, int count)
 {
-	int *arr_index;
+	int	*arr_index;
 	int	i;
 	int	last_position;
 
@@ -65,12 +69,14 @@ int	*get_int_arr_index(int *int_arr, size_t count)
 	{
 		arr_index[last_position] = i;
 		last_position = get_next_lower_position(int_arr, count, last_position);
+		if (last_position == -1)
+			return (NULL);
 		i--;
 	}
 	return (arr_index);
 }
 
-int	*str_arr_to_int_arr(char **str, size_t count)
+int	*str_arr_to_int_arr(char **str, int count)
 {
 	int	*int_arr;
 	int	i;
