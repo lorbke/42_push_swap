@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 19:14:16 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/06 15:57:18 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/07 23:48:23 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	*init_index(int *index, int edge)
 	int	i;
 
 	index = malloc(sizeof(int) * edge);
+	if (!index)
+		return (NULL);
 	i = 0;
 	while (i < edge)
 	{
@@ -77,8 +79,12 @@ int	*ps_get_lds(t_stack *stack, int edge, int swap)
 
 	index = NULL;
 	index = index_lds(index, stack, edge, swap);
+	if (!index)
+		return (NULL);
 	max = get_max(index, edge);
 	lds = malloc(sizeof(int) * (max + 1));
+	if (!lds)
+		return (NULL);
 	lds[max] = -1;
 	i = edge - 1;
 	while (i >= 0)

@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:45:08 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/07 18:25:20 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/07 23:53:28 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	main(int argc, char *argv[])
 		ps_print_error();
 	ft_vector_init(&vector);
 	ps_qsort_a(stacks[0]->count, 1, stacks, &vector);
+	if (errno == ENOMEM)
+		ps_print_error();
 	write(1, ft_vector_get_output(&vector), ft_vector_get_len(&vector));
 	return (0);
 }
