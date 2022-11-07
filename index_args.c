@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 22:01:01 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/06 01:42:44 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/07 18:50:04 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	*get_int_arr_index(int *int_arr, int count)
 	int	i;
 	int	last_position;
 
+	if (int_arr == NULL)
+		return (NULL);
 	arr_index = malloc(sizeof(int) * count);
 	last_position = get_highest_int_position(int_arr, count);
 	i = count - 1;
@@ -76,17 +78,53 @@ int	*get_int_arr_index(int *int_arr, int count)
 	return (arr_index);
 }
 
-int	*str_arr_to_int_arr(char **str, int count)
+static int	*arr_reverse(int *int_arr, int count)
 {
-	int	*int_arr;
+	int	swap;
 	int	i;
 
-	int_arr = malloc(sizeof(int) * count);
 	i = 0;
-	while (i < count)
+	while (i < count / 2)
 	{
-		int_arr[i] = ft_atoi(str[count - 1 - i]);
+		swap = int_arr[i];
+		int_arr[i] = int_arr[count - 1 - i];
+		int_arr[count - 1 - i] = swap;
 		i++;
 	}
 	return (int_arr);
+}
+
+int	*str_arr_to_int_arr(char **str, t_stack **stacks)
+{
+	int			*int_arr;
+	int			i;
+	int			j;
+	int			temp_size;
+	const char	*endptr;
+
+	int_arr = malloc(sizeof(int) * stacks[0]->count * 10);
+	i = 0;
+	j = 0;
+	temp_size = stacks[0]->count;
+	while (i < stacks[0]->count)
+	{
+		endptr = str[i];
+		while (*endptr)
+		{
+			// if (j >= temp_size)
+			// {
+			// 	int_arr
+			// 		= ft_realloc_ftprintf(int_arr, temp_size * 4, temp_size);
+			// 	temp_size *= 4;
+			// }
+			// printf("endpointer: %s\n", endptr);
+			int_arr[j] = ft_strtoi(endptr, &endptr, 10);
+			if (errno == ERANGE || errno == EINVAL)
+				return (NULL);
+			j++;
+		}
+		i++;
+	}
+	stacks[0]->count = j;
+	return (arr_reverse(int_arr, j));
 }

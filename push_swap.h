@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:44:23 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/06 16:05:42 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:11:17 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		ps_parse_args(int argc, char *argv[]);
 
 // index_args
 int		*get_int_arr_index(int *int_arr, int count);
-int		*str_arr_to_int_arr(char **str, int count);
+int		*str_arr_to_int_arr(char **str, t_stack **stacks);
 
 // stack_utils
 int		*copy_array(int *dst, int *src, int n);
