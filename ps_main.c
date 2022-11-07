@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ps_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:45:08 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/06 01:37:20 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/06 16:05:19 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 #include "push_swap.h"
 
-void	print_error(void)
+void	ps_print_error(void)
 {
 	write(2, "Error\n", 6);
 	exit(0);
@@ -45,14 +45,14 @@ int	main(int argc, char *argv[])
 
 	if (argc <= 1)
 		return (0);
-	if (!parse_args(argc, argv))
-		print_error();
+	if (!ps_parse_args(argc, argv))
+		ps_print_error();
 	stacks = NULL;
-	stacks = init_stacks(stacks, &argv[1], argc - 1);
+	stacks = ps_init_stacks(stacks, &argv[1], argc - 1);
 	if (!stacks)
-		print_error();
+		ps_print_error();
 	ft_vector_init(&vector);
-	quicksort_a(stacks[0]->count, 1, stacks, &vector);
+	ps_qsort_a(stacks[0]->count, 1, stacks, &vector);
 	write(1, ft_vector_get_output(&vector), ft_vector_get_len(&vector));
 	return (0);
 }

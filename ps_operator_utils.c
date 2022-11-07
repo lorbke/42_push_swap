@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator_utils.c                                   :+:      :+:    :+:   */
+/*   ps_operator_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:37:20 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/06 00:52:30 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/06 15:59:07 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_top_of_stack(t_stack *stack)
+void	ps_swap_top_of_stack(t_stack *stack)
 {
 	int	temp;
 
@@ -21,7 +21,7 @@ void	swap_top_of_stack(t_stack *stack)
 	stack->index[stack->count - 2] = temp;
 }
 
-void	push_to_stack(t_stack *from, t_stack *to)
+void	ps_push_to_stack(t_stack *from, t_stack *to)
 {
 	to->index[to->count] = from->index[from->count - 1];
 	to->count++;
@@ -30,7 +30,7 @@ void	push_to_stack(t_stack *from, t_stack *to)
 	from->index[from->count] = -1;
 }
 
-void	rotate_stack_up(t_stack *stack)
+void	ps_rotate_stack_up(t_stack *stack)
 {
 	int	i;
 	int	temp;
@@ -46,7 +46,7 @@ void	rotate_stack_up(t_stack *stack)
 	stack->index[0] = temp;
 }
 
-void	rotate_stack_down(t_stack *stack)
+void	ps_rotate_stack_down(t_stack *stack)
 {
 	int	i;
 	int	temp;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   subsequence.c                                      :+:      :+:    :+:   */
+/*   ps_subsequence.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 19:14:16 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/05 19:19:50 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/06 15:57:18 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	get_max(int *index, int edge)
 	return (max);
 }
 
-int	*get_lds(t_stack *stack, int edge, int swap)
+int	*ps_get_lds(t_stack *stack, int edge, int swap)
 {
 	int	*lds;
 	int	*index;

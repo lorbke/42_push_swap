@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*   ps_stack_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:58:28 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/06 00:54:29 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/06 16:00:20 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	*copy_array(int *dst, int *src, int n)
 	return (dst);
 }
 
-t_stack	**init_stacks(t_stack **stacks, char **input, int count)
+t_stack	**ps_init_stacks(t_stack **stacks, char **input, int count)
 {
 	stacks = malloc(sizeof(t_stack *) * 2);
 	stacks[0] = malloc(sizeof(t_stack));

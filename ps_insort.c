@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insertionsort.c                                    :+:      :+:    :+:   */
+/*   ps_insort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:21:38 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/05 19:15:42 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/06 16:07:40 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,27 @@ static void
 	rotate_direction(int dir_a, int dir_b, t_stack **stacks, t_vector *vector)
 {
 	if (dir_a < 0 && dir_b < 0)
-		operate(stacks, vector, 10);
+		ps_operate(stacks, vector, 10);
 	else if (dir_a > 0 && dir_b > 0)
-		operate(stacks, vector, 7);
+		ps_operate(stacks, vector, 7);
 	else if (dir_a < 0 && dir_b > 0)
 	{
-		operate(stacks, vector, 8);
-		operate(stacks, vector, 6);
+		ps_operate(stacks, vector, 8);
+		ps_operate(stacks, vector, 6);
 	}
 	else if (dir_a > 0 && dir_b < 0)
 	{
-		operate(stacks, vector, 5);
-		operate(stacks, vector, 9);
+		ps_operate(stacks, vector, 5);
+		ps_operate(stacks, vector, 9);
 	}
 	else if (dir_a < 0 && dir_b == 0)
-		operate(stacks, vector, 8);
+		ps_operate(stacks, vector, 8);
 	else if (dir_a > 0 && dir_b == 0)
-		operate(stacks, vector, 5);
+		ps_operate(stacks, vector, 5);
 	else if (dir_a == 0 && dir_b > 0)
-		operate(stacks, vector, 6);
+		ps_operate(stacks, vector, 6);
 	else if (dir_a == 0 && dir_b < 0)
-		operate(stacks, vector, 9);
+		ps_operate(stacks, vector, 9);
 }
 
 static void	
@@ -99,14 +99,14 @@ static void
 	}
 }
 
-void	insertionsort(int edge, int swap, t_stack **stacks, t_vector *vector)
+void	ps_insort(int edge, int swap, t_stack **stacks, t_vector *vector)
 {
 	int	*sequence;
 	int	max;
 	int	next;
 	int	i;
 
-	sequence = get_lds(stacks[1], edge, swap);
+	sequence = ps_get_lds(stacks[1], edge, swap);
 	max = stacks[0]->index[0];
 	i = 0;
 	while (edge)
@@ -114,14 +114,12 @@ void	insertionsort(int edge, int swap, t_stack **stacks, t_vector *vector)
 		if (sequence[i] != -1 && edge > 4)
 			next = sequence[i++];
 		else
-			next = get_highest(stacks[1]);
+			next = ps_get_highest(stacks[1]);
 		rotate_to_positions(next, max, stacks, vector);
-		operate(stacks, vector, 3);
+		ps_operate(stacks, vector, 3);
 		edge--;
 	}
 	i = get_direction(max, stacks[0]);
 	while (stacks[0]->index[0] != max)
-	{
 		rotate_direction(i, 0, stacks, vector);
-	}
 }

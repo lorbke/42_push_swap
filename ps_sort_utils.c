@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_utils.c                                       :+:      :+:    :+:   */
+/*   ps_sort_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:09:07 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/05 19:15:23 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/06 16:05:42 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_stack_sorted(int edge, int swap, t_stack *stack)
+int	ps_is_stack_sorted(int edge, int swap, t_stack *stack)
 {
 	int	i;
 
@@ -33,7 +33,7 @@ int	is_stack_sorted(int edge, int swap, t_stack *stack)
 	return (0);
 }
 
-int	is_top_sorted(t_stack *stack)
+int	ps_is_top_sorted(t_stack *stack)
 {
 	if (stack->index[stack->count - 1]
 		< stack->index[stack->count - 2])
@@ -41,7 +41,7 @@ int	is_top_sorted(t_stack *stack)
 	return (0);
 }
 
-int	get_highest(t_stack *stack)
+int	ps_get_highest(t_stack *stack)
 {
 	int	highest;
 	int	i;

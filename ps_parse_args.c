@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_args.c                                       :+:      :+:    :+:   */
+/*   ps_parse_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 22:09:19 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/06 00:51:24 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/06 16:00:08 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	check_signs(char *str, int i)
 	return (1);
 }
 
-int	parse_args(int argc, char *argv[])
+int	ps_parse_args(int argc, char *argv[])
 {
 	int	i;
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quicksort.c                                        :+:      :+:    :+:   */
+/*   ps_qsort.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:26:51 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/05 18:16:11 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/06 16:03:03 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,28 +45,28 @@ static int
 	while (i <= temp)
 	{
 		if (swap == -1)
-			operate(stacks, vector, 9);
+			ps_operate(stacks, vector, 9);
 		if (stacks[1]->index[stacks[1]->count - 1] > pivot)
-			operate(stacks, vector, 3);
+			ps_operate(stacks, vector, 3);
 		else if (swap == 1)
-			operate(stacks, vector, 6);
+			ps_operate(stacks, vector, 6);
 		i++;
 	}
 	return (temp + 1 - stacks[1]->count);
 }
 
-static void	quicksort_b(int edge, int swap, t_stack **stacks, t_vector *vector)
+static void	ps_qsort_b(int edge, int swap, t_stack **stacks, t_vector *vector)
 {
 	int	new_edge;
 
 	if (edge > 25)
 	{
 		new_edge = split_stack_b(edge, swap, stacks, vector);
-		quicksort_a(new_edge, 1, stacks, vector);
-		quicksort_b(edge - new_edge, swap * -1, stacks, vector);
+		ps_qsort_a(new_edge, 1, stacks, vector);
+		ps_qsort_b(edge - new_edge, swap * -1, stacks, vector);
 	}
 	else
-		insertionsort(edge, swap, stacks, vector);
+		ps_insort(edge, swap, stacks, vector);
 }
 
 static int
@@ -82,28 +82,28 @@ static int
 	while (i <= temp)
 	{
 		if (swap == -1)
-			operate(stacks, vector, 8);
+			ps_operate(stacks, vector, 8);
 		if (stacks[0]->index[stacks[0]->count - 1] <= pivot)
-			operate(stacks, vector, 4);
+			ps_operate(stacks, vector, 4);
 		else if (swap == 1)
 		{
-			operate(stacks, vector, 5);
+			ps_operate(stacks, vector, 5);
 		}
 		i++;
 	}
 	return (temp + 1 - stacks[0]->count);
 }
 
-void	quicksort_a(int edge, int swap, t_stack **stacks, t_vector *vector)
+void	ps_qsort_a(int edge, int swap, t_stack **stacks, t_vector *vector)
 {
 	int	new_edge;
 
 	if (edge > 3)
 	{
 		new_edge = split_stack_a(edge, swap, stacks, vector);
-		quicksort_a(edge - new_edge, swap * -1, stacks, vector);
-		quicksort_b(new_edge, 1, stacks, vector);
+		ps_qsort_a(edge - new_edge, swap * -1, stacks, vector);
+		ps_qsort_b(new_edge, 1, stacks, vector);
 	}
 	else
-		hardsort(edge, swap, stacks, vector);
+		ps_hardsort(edge, swap, stacks, vector);
 }
