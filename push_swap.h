@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:44:23 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/07 17:11:17 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:23:46 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 typedef struct s_stack
 {
-	char			id;
 	int				*index;
 	int				count;
 }	t_stack;
@@ -39,8 +38,10 @@ int		*get_int_arr_index(int *int_arr, int count);
 int		*str_arr_to_int_arr(char **str, t_stack **stacks);
 
 // stack_utils
+void	ps_free_stacks(t_stack **stacks);
+int		*arr_reverse(int *int_arr, int count);
 int		*copy_array(int *dst, int *src, int n);
-t_stack	**ps_init_stacks(t_stack **stacks, char **input, int count);
+t_stack	**ps_init_stacks(char **input, int count);
 
 // operator_utils
 void	ps_swap_top_of_stack(t_stack *stack);

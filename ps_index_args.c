@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 22:01:01 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/07 23:44:35 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:22:53 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ static int	get_highest_int_position(int *int_arr, int count)
 
 static int	get_next_lower_position(int *int_arr, int count, int position)
 {
-	int	i;
 	int	next_lower_position;
+	int	i;
 
+	next_lower_position = 0;
 	i = 0;
 	while (i < count)
 	{
@@ -64,9 +65,9 @@ int	*get_int_arr_index(int *int_arr, int count)
 
 	if (int_arr == NULL)
 		return (NULL);
-	arr_index = malloc(sizeof(int) * count);
+	arr_index = malloc(sizeof(int) * count + 1);
 	if (!arr_index)
-		return (NULL);
+		ps_print_error();
 	last_position = get_highest_int_position(int_arr, count);
 	i = count - 1;
 	while (i >= 0)
@@ -74,26 +75,35 @@ int	*get_int_arr_index(int *int_arr, int count)
 		arr_index[last_position] = i;
 		last_position = get_next_lower_position(int_arr, count, last_position);
 		if (last_position == -1)
+		{
+			free(arr_index);
 			return (NULL);
+		}
 		i--;
 	}
 	return (arr_index);
 }
 
-static int	*arr_reverse(int *int_arr, int count)
+static int	str_arr_to_int_arr_helper(
+	int j, int **int_arr, int *size, const char **endptr)
 {
-	int	swap;
-	int	i;
-
-	i = 0;
-	while (i < count / 2)
+	while (**endptr)
 	{
-		swap = int_arr[i];
-		int_arr[i] = int_arr[count - 1 - i];
-		int_arr[count - 1 - i] = swap;
-		i++;
+		if (j >= *size)
+		{
+			*int_arr = ft_realloc_ftprintf
+				(*int_arr, sizeof(int) * *size * 4,
+					sizeof(int) * *size);
+			*size *= 4;
+		}
+		(*int_arr)[j] = ft_strtoi(*endptr, endptr, 10);
+		if ((*int_arr)[j] == 0 && errno == EINVAL)
+			break ;
+		if (errno == ERANGE || errno == EINVAL)
+			return (-1);
+		j++;
 	}
-	return (int_arr);
+	return (j);
 }
 
 int	*str_arr_to_int_arr(char **str, t_stack **stacks)
@@ -106,29 +116,18 @@ int	*str_arr_to_int_arr(char **str, t_stack **stacks)
 
 	int_arr = malloc(sizeof(int) * stacks[0]->count);
 	if (!int_arr)
-		return (NULL);
+		ps_print_error();
 	i = 0;
 	j = 0;
 	temp_size = stacks[0]->count;
 	while (i < stacks[0]->count)
 	{
 		endptr = str[i];
-		while (*endptr)
+		j = str_arr_to_int_arr_helper(j, &int_arr, &temp_size, &endptr);
+		if (j == -1)
 		{
-			if (j >= temp_size)
-			{
-				int_arr = ft_realloc_ftprintf
-					(int_arr, temp_size * 4 * 8, temp_size * 8);
-				if (!int_arr)
-					return (NULL);
-				temp_size *= 4;
-			}
-			int_arr[j] = ft_strtoi(endptr, &endptr, 10);
-			if (int_arr[j] == 0 && errno == EINVAL)
-				break ;
-			if (errno == ERANGE || errno == EINVAL)
-				return (NULL);
-			j++;
+			free(int_arr);
+			return (NULL);
 		}
 		i++;
 	}

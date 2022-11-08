@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:21:38 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/07 23:52:09 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:53:58 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,6 @@ void	ps_insort(int edge, int swap, t_stack **stacks, t_vector *vector)
 	int	i;
 
 	sequence = ps_get_lds(stacks[1], edge, swap);
-	if (!sequence)
-	{
-		errno = ENOMEM;
-		return ;
-	}
 	max = stacks[0]->index[0];
 	i = 0;
 	while (edge)
@@ -124,6 +119,7 @@ void	ps_insort(int edge, int swap, t_stack **stacks, t_vector *vector)
 		ps_operate(stacks, vector, 3);
 		edge--;
 	}
+	free(sequence);
 	i = get_direction(max, stacks[0]);
 	while (stacks[0]->index[0] != max)
 		rotate_direction(i, 0, stacks, vector);

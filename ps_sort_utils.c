@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:09:07 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/07 23:09:52 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/08 19:17:37 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ps_is_stack_sorted(int edge, int swap, t_stack *stack)
 	i = 0;
 	if (swap == 1)
 	{
-		while (stack->index[stack->count - 1 - i]
-			< stack->index[stack->count - 2 - i] && i < edge - 1)
+		while (i < edge - 1 && stack->index[stack->count - 1 - i]
+			< stack->index[stack->count - 2 - i])
 			i++;
 	}
 	else

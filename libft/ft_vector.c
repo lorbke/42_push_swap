@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 11:24:26 by lorbke            #+#    #+#             */
-/*   Updated: 2022/10/15 13:32:03 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/08 18:03:12 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_vector_init(t_vector *vector)
 {
 	vector->len = 0;
 	vector->temp_len = 0;
-	vector->output = (char *)malloc(sizeof(char) * 1);
+	vector->output = malloc(sizeof(char) * 1);
 }
 
 void	ft_vector_push_back(t_vector *vector, char c, int n)

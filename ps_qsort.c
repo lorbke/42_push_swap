@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:26:51 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/07 23:52:52 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/08 13:42:00 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,7 @@ static void	ps_qsort_b(int edge, int swap, t_stack **stacks, t_vector *vector)
 		ps_qsort_b(edge - new_edge, swap * -1, stacks, vector);
 	}
 	else
-	{
 		ps_insort(edge, swap, stacks, vector);
-		if (errno == ENOMEM)
-			return ;
-	}
 }
 
 static int

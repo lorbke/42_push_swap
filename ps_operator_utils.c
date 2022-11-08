@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:37:20 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/06 15:59:07 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/08 14:33:54 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ void	ps_push_to_stack(t_stack *from, t_stack *to)
 {
 	to->index[to->count] = from->index[from->count - 1];
 	to->count++;
-	to->index[to->count] = -1;
 	from->count--;
-	from->index[from->count] = -1;
 }
 
 void	ps_rotate_stack_up(t_stack *stack)
@@ -37,7 +35,7 @@ void	ps_rotate_stack_up(t_stack *stack)
 
 	temp = stack->index[stack->count - 1];
 	i = 0;
-	while (i < stack->count)
+	while (i < stack->count - 1)
 	{
 		stack->index[stack->count - 1 - i]
 			= stack->index[stack->count - 2 - i];
@@ -53,7 +51,7 @@ void	ps_rotate_stack_down(t_stack *stack)
 
 	temp = stack->index[0];
 	i = 0;
-	while (i < stack->count)
+	while (i < stack->count - 1)
 	{
 		stack->index[i] = stack->index[i + 1];
 		i++;
