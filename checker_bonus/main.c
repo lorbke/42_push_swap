@@ -1,17 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_main.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 13:45:08 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/09 21:32:02 by lorbke           ###   ########.fr       */
+/*   Created: 2022/11/09 21:47:58 by lorbke            #+#    #+#             */
+/*   Updated: 2022/11/10 00:08:06 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "ps_sort.h"
+
+int	check_operations(t_stack **stacks, t_vector *vector)
+{
+	char *buffer;
+	int	i;
+
+	buffer = malloc(sizeof(char) * 4);
+	while (1)
+	{
+		read(STDIN_FILENO, buffer, 4);
+		i = 0;
+		while (i < 4)
+		{
+			
+			i++;
+		}
+		printf("%s\n", buffer);
+	}
+	// while (operation != -1)
+	// 	operation = get_next_operation
+	// 	operate(operation)
+	// if (is_stack_sorted && stack b empty)
+	// 	return (1)
+	// else
+	// 	return (0)
+	return (0);
+}
 
 void	ps_print_error(void)
 {
@@ -38,8 +65,9 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	ft_vector_init(&vector);
-	ps_qsort_a(stacks[0]->count, 1, stacks, &vector);
-	write(1, ft_vector_get_output(&vector), ft_vector_get_len(&vector));
+
+	check_operations(stacks, &vector);
+
 	ps_free_stacks(stacks);
 	ft_vector_free(&vector);
 	return (0);
