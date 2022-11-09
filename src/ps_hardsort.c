@@ -6,11 +6,11 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 00:18:43 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/07 18:35:52 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/09 21:05:44 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ps_sort.h"
 
 static void	hardsort_three(int swap, t_stack **stacks, t_vector *vector)
 {

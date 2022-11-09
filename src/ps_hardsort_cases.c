@@ -6,11 +6,11 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 18:48:19 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/06 16:05:00 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/09 21:05:42 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ps_sort.h"
 
 // 3 2 1
 void	ps_case_one(t_stack **stacks, t_vector *vector)

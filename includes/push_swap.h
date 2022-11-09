@@ -6,7 +6,7 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:44:23 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/08 20:23:46 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/09 21:13:31 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 # include <unistd.h>
 # include <limits.h>
 
-# include "libft/libft.h"
-# include "libft/ft_printf.h"
-# include "libft/ft_vector.h"
+# include "libft.h"
+# include "ft_printf.h"
+# include "ft_vector.h"
 
 typedef struct s_stack
 {
-	int				*index;
-	int				count;
+	int	*index;
+	int	count;
 }	t_stack;
 
 // error
@@ -51,29 +51,5 @@ void	ps_rotate_stack_down(t_stack *stack);
 
 // operator
 void	ps_operate(t_stack **stacks, t_vector *vector, int operation);
-
-// hardsort
-void	ps_hardsort_two(int swap, t_stack **stacks, t_vector *vector);
-void	ps_hardsort(int edge, int swap, t_stack **stacks, t_vector *vector);
-
-// subsequence
-int		*ps_get_lds(t_stack *stack, int edge, int swap);
-
-// insertionsort
-void	ps_insort(int edge, int swap, t_stack **stacks, t_vector *vector);
-
-// quicksort
-void	ps_qsort_a(int edge, int swap, t_stack **stacks, t_vector *vector);
-
-// hardsort_cases
-void	ps_case_one(t_stack **stacks, t_vector *vector);
-void	ps_case_two(t_stack **stacks, t_vector *vector);
-void	ps_case_three(t_stack **stacks, t_vector *vector);
-void	ps_case_four(t_stack **stacks, t_vector *vector);
-
-// sort_utils
-int		ps_is_stack_sorted(int edge, int swap, t_stack *stack);
-int		ps_is_top_sorted(t_stack *stack);
-int		ps_get_highest(t_stack *stack);
 
 #endif

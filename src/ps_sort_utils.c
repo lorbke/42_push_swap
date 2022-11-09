@@ -6,11 +6,11 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:09:07 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/08 19:17:37 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/09 21:06:13 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ps_sort.h"
 
 int	ps_is_stack_sorted(int edge, int swap, t_stack *stack)
 {

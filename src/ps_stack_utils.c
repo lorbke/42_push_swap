@@ -6,11 +6,11 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:58:28 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/08 20:23:08 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/09 21:06:16 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ps_sort.h"
 
 void	ps_free_stacks(t_stack **stacks)
 {

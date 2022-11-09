@@ -6,11 +6,11 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 19:14:16 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/08 14:05:50 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/09 21:06:18 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ps_sort.h"
 
 static int	*init_index(int edge)
 {

@@ -6,11 +6,11 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:21:38 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/08 13:53:58 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/09 21:05:51 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ps_sort.h"
 
 static int	get_insert_pos(int insert, int max, t_stack *stack)
 {

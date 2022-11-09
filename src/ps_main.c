@@ -6,13 +6,12 @@
 /*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:45:08 by lorbke            #+#    #+#             */
-/*   Updated: 2022/11/08 20:26:23 by lorbke           ###   ########.fr       */
+/*   Updated: 2022/11/09 21:14:42 by lorbke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// split into directories
-
 #include "push_swap.h"
+#include "ps_sort.h"
 
 void	ps_print_error(void)
 {
